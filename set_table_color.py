@@ -1,8 +1,10 @@
 import random
 
 from PyQt5 import QtCore
+from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QIcon, QBrush, QColor
-from PyQt5.QtWidgets import QMainWindow, QAction, qApp, QApplication, QTableWidget, QTableWidgetItem
+from PyQt5.QtWidgets import QMainWindow, QAction, qApp, QApplication, QTableWidget, QTableWidgetItem, QPushButton, \
+    QVBoxLayout
 import sys
 
 
@@ -38,7 +40,19 @@ class QlabelDemo(QMainWindow):
                 qtable_color.setBackground(QBrush(QColor(255, 128, 0)))
                 qtable_color.setBackground(QBrush(QColor(20, 120, 255)))
                 self.lable.setItem(i, j, qtable_color)
+        self.button = QPushButton(self)
+        self.button.setGeometry(QtCore.QRect(50, 250, 100, 30))
+        self.button.setText('点击排序')
+        # 设置默认为降序排列
+        self.button.clicked.connect(self.order)
+        self.orderType = Qt.DescendingOrder
 
+    def order(self):
+        if self.orderType == Qt.DescendingOrder:
+            self.orderType = Qt.AscendingOrder
+        else:
+            self.orderType = Qt.DescendingOrder
+        self.lable.sortItems(2, self.orderType)
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
