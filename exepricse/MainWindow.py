@@ -6,7 +6,6 @@ from PyQt5.QtWidgets import QApplication, QTableWidget, QWidget, QTableWidgetIte
 from PyQt5.QtWidgets import QSplitter
 
 
-
 class MianWindow(QWidget):
     def __init__(self):
         super(MianWindow, self).__init__()
@@ -38,7 +37,6 @@ class MianWindow(QWidget):
         splitter3.addWidget(splitter2)
 
         mainlayout.addWidget(splitter3)
-        mainlayout.addWidget(self.table)
         self.setLayout(mainlayout)
         self.show()
 

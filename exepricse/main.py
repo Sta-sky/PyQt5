@@ -1,9 +1,7 @@
 # -*- coding: utf-8 -*-
 import sys
-import psycopg2
-import time, datetime
-from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QMessageBox, QTableWidgetItem
-from tables import Ui_dataBaseForm
+from PyQt5.QtWidgets import QApplication, QMainWindow
+from exepricse.tables import Ui_dataBaseForm
 
 
 class MyMain(QMainWindow, Ui_dataBaseForm):
