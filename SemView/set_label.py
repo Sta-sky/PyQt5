@@ -1,5 +1,5 @@
-from PyQt5.QtWidgets import QLabel, QPushButton, QHBoxLayout
-from util.tools import handle_img, set_font
+from PyQt5.QtWidgets import QLabel
+from util.tools import set_font
 
 class SetLabel:
     def label_init(self):
