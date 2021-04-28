@@ -393,3 +393,333 @@
     &measurement_score 695
     &measurement_afc : 4, M, F, -5012.00, 211.00, 200000, -1, 0, 0000
     &measurement_afc : 4, M, F, -5012.00, 211.00, 200000, 467, 0, 0000
+  $result 5 MP 1 -1,4 8467462,14170219 120089828,279625700 1,-1 0 1 1 1 nm 346.9
+    <result_info>    5 : Multi_Measure        : P
+    <result_info>    5 : Measurement          : Width
+    <result_info>    5 : Object               : Space
+    <result_info>    5 : Kind                 : Multi Point
+    <result_info>    5 : Data                 : Mean'
+    <result_info>    5 : Mean                 : 34.71 nm
+    <result_info>    5 : Mean'                : 34.69 nm
+    <result_info>    5 : Maximum              : 37.08 nm
+    <result_info>    5 : Minimum              : 32.74 nm
+    <result_info>    5 : 3Sigma               : 3.33 nm
+    <result_info>    5 : 3Sigma'              : 2.97 nm
+    <result_info>    5 : Max-Min              : 4.34 nm
+    <result_info>    5 : 3Sigma(L.E.)         : 2.62 nm
+    <result_info>    5 : 3Sigma'(L.E.)        : 2.27 nm
+    <result_info>    5 : Max-Min(L.E.)        : 3.68 nm
+    <result_info>    5 : 3Sigma(R.E.)         : 2.79 nm
+    <result_info>    5 : 3Sigma'(R.E.)        : 2.49 nm
+    <result_info>    5 : Max-Min(R.E.)        : 3.69 nm
+    <result_info>    5 : Wiggling_LER         : * nm
+    <result_info>    5 : LR_Correlation       : * 
+    <result_info>    5 : Center_Variation     : * nm
+    <result_info>    5 : ****** Measurement ACD Data ******
+    <result_info>    5 : Statistical Data Name : Mean' : Mean : Mean' : Maximum : Minimum : 3Sigma : 3Sigma' : Max-Min : 3Sigma(L.E.) : 3Sigma'(L.E.) : Max-Min(L.E.) : 3Sigma(R.E.) : 3Sigma'(R.E.) : Max-Min(R.E.) : Wiggling_LER : LR_Correlation : Center_Variation
+    <result_info>    5 : Average_CD           : 34.69 nm : 34.71 nm : 34.69 nm : 37.08 nm : 32.74 nm : 3.33 nm : 2.97 nm : 4.34 nm : 2.62 nm : 2.27 nm : 3.68 nm : 2.79 nm : 2.49 nm : 3.69 nm : - nm : -  : - nm
+    <result_info>    5 : Minimum_CD           : 34.37 nm : 34.38 nm : 34.37 nm : 36.25 nm : 32.19 nm : 2.56 nm : 2.39 nm : 2.87 nm : 2.12 nm : 1.83 nm : 3.05 nm : 2.00 nm : 1.79 nm : 2.61 nm : - nm : -  : - nm
+    <result_info>    5 : Maximum_CD           : 34.94 nm : 34.93 nm : 34.94 nm : 38.02 nm : 33.38 nm : 3.76 nm : 3.39 nm : 5.37 nm : 3.01 nm : 2.51 nm : 4.55 nm : 3.98 nm : 3.65 nm : 4.81 nm : - nm : -  : - nm
+    <result_info>    5 : 3Sigma_CD            : 0.88 nm : 0.86 nm : 0.88 nm : 2.66 nm : 1.81 nm : 2.01 nm : 1.56 nm : 3.93 nm : 1.37 nm : 1.14 nm : 2.34 nm : 3.13 nm : 3.04 nm : 3.30 nm : - nm : -  : - nm
+    <result_info>    5 : Mean'_CD             : 34.77 nm : 34.80 nm : 34.77 nm : 36.98 nm : 32.65 nm : 3.67 nm : 3.13 nm : 4.79 nm : 2.73 nm : 2.48 nm : 3.43 nm : 2.40 nm : 2.02 nm : 3.66 nm : - nm : -  : - nm
+    <result_info>    5 : Number of Target     : 3
+    <result_info>    5 : Number of Data       : 3
+    <result_info>    5 : Data Name            : Mean' : Mean : Mean' : Maximum : Minimum : 3Sigma : 3Sigma' : Max-Min : 3Sigma(L.E.) : 3Sigma'(L.E.) : Max-Min(L.E.) : 3Sigma(R.E.) : 3Sigma'(R.E.) : Max-Min(R.E.) : Wiggling_LER : LR_Correlation : Center_Variation : EdgeCenterPosX : EdgeCenterPosY : CenterPosX(nm) : CenterPosY(nm)
+    <result_info>    5 : Data   1             : 34.37 nm : 34.38 nm : 34.37 nm : 36.98 nm : 32.19 nm : 3.76 nm : 3.39 nm : 4.79 nm : 3.01 nm : 2.51 nm : 4.55 nm : 3.98 nm : 3.65 nm : 4.81 nm : * nm : *  : * nm : 194.15 pixel : 327.50 pixel : 255.94 nm : -431.74 nm
+    <result_info>    5 : Data   2             : 34.94 nm : 34.93 nm : 34.94 nm : 36.25 nm : 33.38 nm : 2.56 nm : 2.39 nm : 2.87 nm : 2.12 nm : 1.83 nm : 3.05 nm : 2.00 nm : 1.79 nm : 2.61 nm : * nm : *  : * nm : 266.72 pixel : 255.50 pixel : 351.61 nm : -336.82 nm
+    <result_info>    5 : Data   3             : 34.77 nm : 34.80 nm : 34.77 nm : 38.02 nm : 32.65 nm : 3.67 nm : 3.13 nm : 5.37 nm : 2.73 nm : 2.48 nm : 3.43 nm : 2.40 nm : 2.02 nm : 3.66 nm : * nm : *  : * nm : 339.67 pixel : 193.50 pixel : 447.78 nm : -255.09 nm
+    <result_info>    5 : Center_Position      : 351.78 nm, -341.22 nm
+    &no_of_mp_image 2
+    &mp_image_name 01 S12_M0005-01MS.jpeg
+    &mp_image_name 02 S12_M0005-02MS.tif
+    &meas_condition mag 200011
+    &meas_condition vac 500
+    &meas_condition pixel 512,512
+    &addressing1_score 378
+    &addressing2_score -
+    &measurement_score 707
+    &measurement_afc : 4, M, F, -5012.00, 211.00, 200000, -1, 0, 0000
+    &measurement_afc : 4, M, F, -5012.00, 211.00, 200000, 478, 0, 0000
+  $result 6 MP 1 -1,4 8477462,14170219 120099831,279625680 1,-1 0 1 1 1 nm 336.8
+    <result_info>    6 : Multi_Measure        : P
+    <result_info>    6 : Measurement          : Width
+    <result_info>    6 : Object               : Space
+    <result_info>    6 : Kind                 : Multi Point
+    <result_info>    6 : Data                 : Mean'
+    <result_info>    6 : Mean                 : 33.68 nm
+    <result_info>    6 : Mean'                : 33.68 nm
+    <result_info>    6 : Maximum              : 36.45 nm
+    <result_info>    6 : Minimum              : 31.00 nm
+    <result_info>    6 : 3Sigma               : 4.08 nm
+    <result_info>    6 : 3Sigma'              : 3.61 nm
+    <result_info>    6 : Max-Min              : 5.45 nm
+    <result_info>    6 : 3Sigma(L.E.)         : 2.39 nm
+    <result_info>    6 : 3Sigma'(L.E.)        : 2.11 nm
+    <result_info>    6 : Max-Min(L.E.)        : 3.23 nm
+    <result_info>    6 : 3Sigma(R.E.)         : 2.99 nm
+    <result_info>    6 : 3Sigma'(R.E.)        : 2.48 nm
+    <result_info>    6 : Max-Min(R.E.)        : 4.57 nm
+    <result_info>    6 : Wiggling_LER         : * nm
+    <result_info>    6 : LR_Correlation       : * 
+    <result_info>    6 : Center_Variation     : * nm
+    <result_info>    6 : ****** Measurement ACD Data ******
+    <result_info>    6 : Statistical Data Name : Mean' : Mean : Mean' : Maximum : Minimum : 3Sigma : 3Sigma' : Max-Min : 3Sigma(L.E.) : 3Sigma'(L.E.) : Max-Min(L.E.) : 3Sigma(R.E.) : 3Sigma'(R.E.) : Max-Min(R.E.) : Wiggling_LER : LR_Correlation : Center_Variation
+    <result_info>    6 : Average_CD           : 33.68 nm : 33.68 nm : 33.68 nm : 36.45 nm : 31.00 nm : 4.08 nm : 3.61 nm : 5.45 nm : 2.39 nm : 2.11 nm : 3.23 nm : 2.99 nm : 2.48 nm : 4.57 nm : - nm : -  : - nm
+    <result_info>    6 : Minimum_CD           : 33.15 nm : 33.13 nm : 33.15 nm : 35.62 nm : 29.89 nm : 3.73 nm : 3.29 nm : 5.11 nm : 1.68 nm : 1.49 nm : 2.23 nm : 2.29 nm : 2.01 nm : 3.13 nm : - nm : -  : - nm
+    <result_info>    6 : Maximum_CD           : 33.96 nm : 34.00 nm : 33.96 nm : 37.37 nm : 31.87 nm : 4.33 nm : 3.86 nm : 5.74 nm : 2.92 nm : 2.56 nm : 4.04 nm : 3.67 nm : 3.00 nm : 5.63 nm : - nm : -  : - nm
+    <result_info>    6 : 3Sigma_CD            : 1.38 nm : 1.46 nm : 1.38 nm : 2.64 nm : 3.04 nm : 0.94 nm : 0.88 nm : 0.95 nm : 1.91 nm : 1.65 nm : 2.76 nm : 2.07 nm : 1.48 nm : 3.87 nm : - nm : -  : - nm
+    <result_info>    6 : Mean'_CD             : 33.93 nm : 33.92 nm : 33.93 nm : 36.35 nm : 31.24 nm : 4.17 nm : 3.69 nm : 5.51 nm : 2.57 nm : 2.29 nm : 3.41 nm : 3.00 nm : 2.41 nm : 4.94 nm : - nm : -  : - nm
+    <result_info>    6 : Number of Target     : 3
+    <result_info>    6 : Number of Data       : 3
+    <result_info>    6 : Data Name            : Mean' : Mean : Mean' : Maximum : Minimum : 3Sigma : 3Sigma' : Max-Min : 3Sigma(L.E.) : 3Sigma'(L.E.) : Max-Min(L.E.) : 3Sigma(R.E.) : 3Sigma'(R.E.) : Max-Min(R.E.) : Wiggling_LER : LR_Correlation : Center_Variation : EdgeCenterPosX : EdgeCenterPosY : CenterPosX(nm) : CenterPosY(nm)
+    <result_info>    6 : Data   1             : 33.96 nm : 34.00 nm : 33.96 nm : 37.37 nm : 31.87 nm : 4.17 nm : 3.69 nm : 5.51 nm : 2.57 nm : 2.29 nm : 3.41 nm : 3.67 nm : 3.00 nm : 5.63 nm : * nm : *  : * nm : 188.53 pixel : 319.50 pixel : 248.54 nm : -421.19 nm
+    <result_info>    6 : Data   2             : 33.93 nm : 33.92 nm : 33.93 nm : 36.35 nm : 31.24 nm : 3.73 nm : 3.29 nm : 5.11 nm : 1.68 nm : 1.49 nm : 2.23 nm : 3.00 nm : 2.41 nm : 4.94 nm : * nm : *  : * nm : 262.98 pixel : 255.50 pixel : 346.68 nm : -336.82 nm
+    <result_info>    6 : Data   3             : 33.15 nm : 33.13 nm : 33.15 nm : 35.62 nm : 29.89 nm : 4.33 nm : 3.86 nm : 5.74 nm : 2.92 nm : 2.56 nm : 4.04 nm : 2.29 nm : 2.01 nm : 3.13 nm : * nm : *  : * nm : 337.28 pixel : 315.50 pixel : 444.63 nm : -415.92 nm
+    <result_info>    6 : Center_Position      : 346.62 nm, -391.31 nm
+    &no_of_mp_image 2
+    &mp_image_name 01 S12_M0006-01MS.jpeg
+    &mp_image_name 02 S12_M0006-02MS.tif
+    &meas_condition mag 200011
+    &meas_condition vac 500
+    &meas_condition pixel 512,512
+    &addressing1_score 377
+    &addressing2_score -
+    &measurement_score 688
+    &measurement_afc : 4, M, F, -5012.00, 211.00, 200000, -1, 0, 0000
+    &measurement_afc : 4, M, F, -5012.00, 211.00, 200000, 477, 0, 0000
+  $result 7 MP 1 0,4 8427462,14170219 145969751,279568561 1,-1 0 1 1 1 nm 522.4
+    <result_info>    7 : Multi_Measure        : P
+    <result_info>    7 : Measurement          : Width
+    <result_info>    7 : Object               : Space
+    <result_info>    7 : Kind                 : Multi Point
+    <result_info>    7 : Data                 : Mean'
+    <result_info>    7 : Mean                 : 52.24 nm
+    <result_info>    7 : Mean'                : 52.24 nm
+    <result_info>    7 : Maximum              : 55.75 nm
+    <result_info>    7 : Minimum              : 48.50 nm
+    <result_info>    7 : 3Sigma               : 5.55 nm
+    <result_info>    7 : 3Sigma'              : 4.97 nm
+    <result_info>    7 : Max-Min              : 7.26 nm
+    <result_info>    7 : 3Sigma(L.E.)         : 3.98 nm
+    <result_info>    7 : 3Sigma'(L.E.)        : 3.50 nm
+    <result_info>    7 : Max-Min(L.E.)        : 5.43 nm
+    <result_info>    7 : 3Sigma(R.E.)         : 4.88 nm
+    <result_info>    7 : 3Sigma'(R.E.)        : 4.37 nm
+    <result_info>    7 : Max-Min(R.E.)        : 6.22 nm
+    <result_info>    7 : Wiggling_LER         : * nm
+    <result_info>    7 : LR_Correlation       : * 
+    <result_info>    7 : Center_Variation     : * nm
+    <result_info>    7 : ****** Measurement ACD Data ******
+    <result_info>    7 : Statistical Data Name : Mean' : Mean : Mean' : Maximum : Minimum : 3Sigma : 3Sigma' : Max-Min : 3Sigma(L.E.) : 3Sigma'(L.E.) : Max-Min(L.E.) : 3Sigma(R.E.) : 3Sigma'(R.E.) : Max-Min(R.E.) : Wiggling_LER : LR_Correlation : Center_Variation
+    <result_info>    7 : Average_CD           : 52.24 nm : 52.24 nm : 52.24 nm : 55.75 nm : 48.50 nm : 5.55 nm : 4.97 nm : 7.26 nm : 3.98 nm : 3.50 nm : 5.43 nm : 4.88 nm : 4.37 nm : 6.22 nm : - nm : -  : - nm
+    <result_info>    7 : Minimum_CD           : 51.70 nm : 51.65 nm : 51.70 nm : 54.86 nm : 47.13 nm : 4.94 nm : 4.44 nm : 6.41 nm : 3.79 nm : 3.28 nm : 5.14 nm : 4.33 nm : 3.55 nm : 5.50 nm : - nm : -  : - nm
+    <result_info>    7 : Maximum_CD           : 52.86 nm : 52.89 nm : 52.86 nm : 57.14 nm : 49.51 nm : 6.09 nm : 5.49 nm : 7.73 nm : 4.31 nm : 3.84 nm : 5.69 nm : 5.45 nm : 5.04 nm : 6.81 nm : - nm : -  : - nm
+    <result_info>    7 : 3Sigma_CD            : 1.75 nm : 1.86 nm : 1.75 nm : 3.66 nm : 3.69 nm : 1.74 nm : 1.58 nm : 2.22 nm : 0.86 nm : 0.89 nm : 0.83 nm : 1.68 nm : 2.28 nm : 2.00 nm : - nm : -  : - nm
+    <result_info>    7 : Mean'_CD             : 52.17 nm : 52.17 nm : 52.17 nm : 55.26 nm : 48.85 nm : 5.63 nm : 4.97 nm : 7.63 nm : 3.83 nm : 3.39 nm : 5.46 nm : 4.85 nm : 4.53 nm : 6.35 nm : - nm : -  : - nm
+    <result_info>    7 : Number of Target     : 3
+    <result_info>    7 : Number of Data       : 3
+    <result_info>    7 : Data Name            : Mean' : Mean : Mean' : Maximum : Minimum : 3Sigma : 3Sigma' : Max-Min : 3Sigma(L.E.) : 3Sigma'(L.E.) : Max-Min(L.E.) : 3Sigma(R.E.) : 3Sigma'(R.E.) : Max-Min(R.E.) : Wiggling_LER : LR_Correlation : Center_Variation : EdgeCenterPosX : EdgeCenterPosY : CenterPosX(nm) : CenterPosY(nm)
+    <result_info>    7 : Data   1             : 51.70 nm : 51.65 nm : 51.70 nm : 54.86 nm : 47.13 nm : 6.09 nm : 5.49 nm : 7.73 nm : 4.31 nm : 3.84 nm : 5.69 nm : 5.45 nm : 5.04 nm : 6.35 nm : * nm : *  : * nm : 216.46 pixel : 185.50 pixel : 285.36 nm : -244.54 nm
+    <result_info>    7 : Data   2             : 52.86 nm : 52.89 nm : 52.86 nm : 57.14 nm : 49.51 nm : 5.63 nm : 4.97 nm : 7.63 nm : 3.79 nm : 3.28 nm : 5.46 nm : 4.85 nm : 4.53 nm : 5.50 nm : * nm : *  : * nm : 282.80 pixel : 255.50 pixel : 372.81 nm : -336.82 nm
+    <result_info>    7 : Data   3             : 52.17 nm : 52.17 nm : 52.17 nm : 55.26 nm : 48.85 nm : 4.94 nm : 4.44 nm : 6.41 nm : 3.83 nm : 3.39 nm : 5.14 nm : 4.33 nm : 3.55 nm : 6.81 nm : * nm : *  : * nm : 350.99 pixel : 295.50 pixel : 462.70 nm : -389.55 nm
+    <result_info>    7 : Center_Position      : 373.62 nm, -323.64 nm
+    &no_of_mp_image 2
+    &mp_image_name 01 S12_M0007-01MS.jpeg
+    &mp_image_name 02 S12_M0007-02MS.tif
+    &meas_condition mag 200011
+    &meas_condition vac 500
+    &meas_condition pixel 512,512
+    &addressing1_score 433
+    &addressing2_score -
+    &measurement_score 749
+    &measurement_afc : 4, M, F, -5012.00, 211.00, 200000, -1, 0, 0000
+    &measurement_afc : 4, M, F, -5012.00, 211.00, 200000, 470, 0, 0000
+  $result 8 MP 1 0,4 8437462,14170219 145979757,279568539 1,-1 0 1 1 1 nm 478.3
+    <result_info>    8 : Multi_Measure        : P
+    <result_info>    8 : Measurement          : Width
+    <result_info>    8 : Object               : Space
+    <result_info>    8 : Kind                 : Multi Point
+    <result_info>    8 : Data                 : Mean'
+    <result_info>    8 : Mean                 : 47.85 nm
+    <result_info>    8 : Mean'                : 47.83 nm
+    <result_info>    8 : Maximum              : 50.27 nm
+    <result_info>    8 : Minimum              : 45.73 nm
+    <result_info>    8 : 3Sigma               : 3.13 nm
+    <result_info>    8 : 3Sigma'              : 2.69 nm
+    <result_info>    8 : Max-Min              : 4.54 nm
+    <result_info>    8 : 3Sigma(L.E.)         : 3.01 nm
+    <result_info>    8 : 3Sigma'(L.E.)        : 2.76 nm
+    <result_info>    8 : Max-Min(L.E.)        : 3.62 nm
+    <result_info>    8 : 3Sigma(R.E.)         : 2.93 nm
+    <result_info>    8 : 3Sigma'(R.E.)        : 2.63 nm
+    <result_info>    8 : Max-Min(R.E.)        : 3.72 nm
+    <result_info>    8 : Wiggling_LER         : * nm
+    <result_info>    8 : LR_Correlation       : * 
+    <result_info>    8 : Center_Variation     : * nm
+    <result_info>    8 : ****** Measurement ACD Data ******
+    <result_info>    8 : Statistical Data Name : Mean' : Mean : Mean' : Maximum : Minimum : 3Sigma : 3Sigma' : Max-Min : 3Sigma(L.E.) : 3Sigma'(L.E.) : Max-Min(L.E.) : 3Sigma(R.E.) : 3Sigma'(R.E.) : Max-Min(R.E.) : Wiggling_LER : LR_Correlation : Center_Variation
+    <result_info>    8 : Average_CD           : 47.83 nm : 47.85 nm : 47.83 nm : 50.27 nm : 45.73 nm : 3.13 nm : 2.69 nm : 4.54 nm : 3.01 nm : 2.76 nm : 3.62 nm : 2.93 nm : 2.63 nm : 3.72 nm : - nm : -  : - nm
+    <result_info>    8 : Minimum_CD           : 47.23 nm : 47.25 nm : 47.23 nm : 49.55 nm : 45.34 nm : 2.62 nm : 2.21 nm : 3.43 nm : 2.51 nm : 2.28 nm : 3.03 nm : 2.49 nm : 2.15 nm : 3.27 nm : - nm : -  : - nm
+    <result_info>    8 : Maximum_CD           : 48.40 nm : 48.41 nm : 48.40 nm : 51.48 nm : 46.12 nm : 4.05 nm : 3.52 nm : 5.74 nm : 3.32 nm : 3.08 nm : 4.00 nm : 3.68 nm : 3.37 nm : 4.39 nm : - nm : -  : - nm
+    <result_info>    8 : 3Sigma_CD            : 1.75 nm : 1.74 nm : 1.75 nm : 3.15 nm : 1.18 nm : 2.38 nm : 2.16 nm : 3.47 nm : 1.32 nm : 1.28 nm : 1.57 nm : 1.98 nm : 1.97 nm : 1.78 nm : - nm : -  : - nm
+    <result_info>    8 : Mean'_CD             : 47.87 nm : 47.87 nm : 47.87 nm : 49.80 nm : 45.74 nm : 2.74 nm : 2.34 nm : 4.46 nm : 3.21 nm : 2.92 nm : 3.84 nm : 2.61 nm : 2.35 nm : 3.50 nm : - nm : -  : - nm
+    <result_info>    8 : Number of Target     : 3
+    <result_info>    8 : Number of Data       : 3
+    <result_info>    8 : Data Name            : Mean' : Mean : Mean' : Maximum : Minimum : 3Sigma : 3Sigma' : Max-Min : 3Sigma(L.E.) : 3Sigma'(L.E.) : Max-Min(L.E.) : 3Sigma(R.E.) : 3Sigma'(R.E.) : Max-Min(R.E.) : Wiggling_LER : LR_Correlation : Center_Variation : EdgeCenterPosX : EdgeCenterPosY : CenterPosX(nm) : CenterPosY(nm)
+    <result_info>    8 : Data   1             : 47.87 nm : 47.87 nm : 47.87 nm : 49.55 nm : 46.12 nm : 2.62 nm : 2.34 nm : 3.43 nm : 3.32 nm : 3.08 nm : 3.84 nm : 3.68 nm : 3.37 nm : 4.39 nm : * nm : *  : * nm : 210.26 pixel : 279.50 pixel : 277.18 nm : -368.46 nm
+    <result_info>    8 : Data   2             : 47.23 nm : 47.25 nm : 47.23 nm : 49.80 nm : 45.34 nm : 2.74 nm : 2.21 nm : 4.46 nm : 3.21 nm : 2.92 nm : 4.00 nm : 2.49 nm : 2.15 nm : 3.50 nm : * nm : *  : * nm : 278.06 pixel : 255.50 pixel : 366.56 nm : -336.82 nm
+    <result_info>    8 : Data   3             : 48.40 nm : 48.41 nm : 48.40 nm : 51.48 nm : 45.74 nm : 4.05 nm : 3.52 nm : 5.74 nm : 2.51 nm : 2.28 nm : 3.03 nm : 2.61 nm : 2.35 nm : 3.27 nm : * nm : *  : * nm : 346.59 pixel : 195.50 pixel : 456.90 nm : -257.72 nm
+    <result_info>    8 : Center_Position      : 366.88 nm, -321.00 nm
+    &no_of_mp_image 2
+    &mp_image_name 01 S12_M0008-01MS.jpeg
+    &mp_image_name 02 S12_M0008-02MS.tif
+    &meas_condition mag 200011
+    &meas_condition vac 500
+    &meas_condition pixel 512,512
+    &addressing1_score 430
+    &addressing2_score -
+    &measurement_score 774
+    &measurement_afc : 4, M, F, -5012.00, 211.00, 200000, -1, 0, 0000
+    &measurement_afc : 4, M, F, -5012.00, 211.00, 200000, 464, 0, 0000
+  $result 9 MP 1 0,4 8447462,14170219 145989760,279568518 1,-1 0 1 1 1 nm 372.3
+    <result_info>    9 : Multi_Measure        : P
+    <result_info>    9 : Measurement          : Width
+    <result_info>    9 : Object               : Space
+    <result_info>    9 : Kind                 : Multi Point
+    <result_info>    9 : Data                 : Mean'
+    <result_info>    9 : Mean                 : 37.26 nm
+    <result_info>    9 : Mean'                : 37.23 nm
+    <result_info>    9 : Maximum              : 40.75 nm
+    <result_info>    9 : Minimum              : 34.50 nm
+    <result_info>    9 : 3Sigma               : 4.54 nm
+    <result_info>    9 : 3Sigma'              : 3.97 nm
+    <result_info>    9 : Max-Min              : 6.25 nm
+    <result_info>    9 : 3Sigma(L.E.)         : 3.27 nm
+    <result_info>    9 : 3Sigma'(L.E.)        : 2.87 nm
+    <result_info>    9 : Max-Min(L.E.)        : 4.36 nm
+    <result_info>    9 : 3Sigma(R.E.)         : 2.84 nm
+    <result_info>    9 : 3Sigma'(R.E.)        : 2.48 nm
+    <result_info>    9 : Max-Min(R.E.)        : 3.97 nm
+    <result_info>    9 : Wiggling_LER         : * nm
+    <result_info>    9 : LR_Correlation       : * 
+    <result_info>    9 : Center_Variation     : * nm
+    <result_info>    9 : ****** Measurement ACD Data ******
+    <result_info>    9 : Statistical Data Name : Mean' : Mean : Mean' : Maximum : Minimum : 3Sigma : 3Sigma' : Max-Min : 3Sigma(L.E.) : 3Sigma'(L.E.) : Max-Min(L.E.) : 3Sigma(R.E.) : 3Sigma'(R.E.) : Max-Min(R.E.) : Wiggling_LER : LR_Correlation : Center_Variation
+    <result_info>    9 : Average_CD           : 37.23 nm : 37.26 nm : 37.23 nm : 40.75 nm : 34.50 nm : 4.54 nm : 3.97 nm : 6.25 nm : 3.27 nm : 2.87 nm : 4.36 nm : 2.84 nm : 2.48 nm : 3.97 nm : - nm : -  : - nm
+    <result_info>    9 : Minimum_CD           : 37.10 nm : 37.12 nm : 37.10 nm : 40.49 nm : 34.07 nm : 4.18 nm : 3.55 nm : 6.00 nm : 2.96 nm : 2.44 nm : 3.47 nm : 2.71 nm : 2.36 nm : 3.84 nm : - nm : -  : - nm
+    <result_info>    9 : Maximum_CD           : 37.34 nm : 37.39 nm : 37.34 nm : 41.21 nm : 35.22 nm : 4.76 nm : 4.20 nm : 6.50 nm : 3.55 nm : 3.13 nm : 5.02 nm : 2.99 nm : 2.61 nm : 4.18 nm : - nm : -  : - nm
+    <result_info>    9 : 3Sigma_CD            : 0.36 nm : 0.42 nm : 0.36 nm : 1.20 nm : 1.87 nm : 0.93 nm : 1.11 nm : 0.75 nm : 0.89 nm : 1.12 nm : 2.39 nm : 0.43 nm : 0.38 nm : 0.56 nm : - nm : -  : - nm
+    <result_info>    9 : Mean'_CD             : 37.26 nm : 37.27 nm : 37.26 nm : 40.56 nm : 34.22 nm : 4.68 nm : 4.17 nm : 6.27 nm : 3.31 nm : 3.03 nm : 4.59 nm : 2.81 nm : 2.46 nm : 3.90 nm : - nm : -  : - nm
+    <result_info>    9 : Number of Target     : 3
+    <result_info>    9 : Number of Data       : 3
+    <result_info>    9 : Data Name            : Mean' : Mean : Mean' : Maximum : Minimum : 3Sigma : 3Sigma' : Max-Min : 3Sigma(L.E.) : 3Sigma'(L.E.) : Max-Min(L.E.) : 3Sigma(R.E.) : 3Sigma'(R.E.) : Max-Min(R.E.) : Wiggling_LER : LR_Correlation : Center_Variation : EdgeCenterPosX : EdgeCenterPosY : CenterPosX(nm) : CenterPosY(nm)
+    <result_info>    9 : Data   1             : 37.26 nm : 37.27 nm : 37.26 nm : 40.56 nm : 34.07 nm : 4.76 nm : 4.20 nm : 6.50 nm : 3.31 nm : 3.13 nm : 3.47 nm : 2.81 nm : 2.46 nm : 3.90 nm : * nm : *  : * nm : 204.33 pixel : 281.50 pixel : 269.37 nm : -371.10 nm
+    <result_info>    9 : Data   2             : 37.34 nm : 37.39 nm : 37.34 nm : 41.21 nm : 35.22 nm : 4.68 nm : 4.17 nm : 6.00 nm : 3.55 nm : 3.03 nm : 5.02 nm : 2.71 nm : 2.36 nm : 3.84 nm : * nm : *  : * nm : 274.11 pixel : 255.50 pixel : 361.36 nm : -336.82 nm
+    <result_info>    9 : Data   3             : 37.10 nm : 37.12 nm : 37.10 nm : 40.49 nm : 34.22 nm : 4.18 nm : 3.55 nm : 6.27 nm : 2.96 nm : 2.44 nm : 4.59 nm : 2.99 nm : 2.61 nm : 4.18 nm : * nm : *  : * nm : 343.80 pixel : 221.50 pixel : 453.23 nm : -292.00 nm
+    <result_info>    9 : Center_Position      : 361.32 nm, -333.31 nm
+    &no_of_mp_image 2
+    &mp_image_name 01 S12_M0009-01MS.jpeg
+    &mp_image_name 02 S12_M0009-02MS.tif
+    &meas_condition mag 200011
+    &meas_condition vac 500
+    &meas_condition pixel 512,512
+    &addressing1_score 417
+    &addressing2_score -
+    &measurement_score 703
+    &measurement_afc : 4, M, F, -5012.00, 211.00, 200000, -1, 0, 0000
+    &measurement_afc : 4, M, F, -5012.00, 211.00, 200000, 468, 0, 0000
+  $result 10 MP 1 0,4 8457462,14170219 145999765,279568494 1,-1 0 1 1 1 nm 366.0
+    <result_info>   10 : Multi_Measure        : P
+    <result_info>   10 : Measurement          : Width
+    <result_info>   10 : Object               : Space
+    <result_info>   10 : Kind                 : Multi Point
+    <result_info>   10 : Data                 : Mean'
+    <result_info>   10 : Mean                 : 36.61 nm
+    <result_info>   10 : Mean'                : 36.60 nm
+    <result_info>   10 : Maximum              : 39.35 nm
+    <result_info>   10 : Minimum              : 34.30 nm
+    <result_info>   10 : 3Sigma               : 3.59 nm
+    <result_info>   10 : 3Sigma'              : 3.13 nm
+    <result_info>   10 : Max-Min              : 5.05 nm
+    <result_info>   10 : 3Sigma(L.E.)         : 2.40 nm
+    <result_info>   10 : 3Sigma'(L.E.)        : 2.08 nm
+    <result_info>   10 : Max-Min(L.E.)        : 3.38 nm
+    <result_info>   10 : 3Sigma(R.E.)         : 2.79 nm
+    <result_info>   10 : 3Sigma'(R.E.)        : 2.52 nm
+    <result_info>   10 : Max-Min(R.E.)        : 3.50 nm
+    <result_info>   10 : Wiggling_LER         : * nm
+    <result_info>   10 : LR_Correlation       : * 
+    <result_info>   10 : Center_Variation     : * nm
+    <result_info>   10 : ****** Measurement ACD Data ******
+    <result_info>   10 : Statistical Data Name : Mean' : Mean : Mean' : Maximum : Minimum : 3Sigma : 3Sigma' : Max-Min : 3Sigma(L.E.) : 3Sigma'(L.E.) : Max-Min(L.E.) : 3Sigma(R.E.) : 3Sigma'(R.E.) : Max-Min(R.E.) : Wiggling_LER : LR_Correlation : Center_Variation
+    <result_info>   10 : Average_CD           : 36.60 nm : 36.61 nm : 36.60 nm : 39.35 nm : 34.30 nm : 3.59 nm : 3.13 nm : 5.05 nm : 2.40 nm : 2.08 nm : 3.38 nm : 2.79 nm : 2.52 nm : 3.50 nm : - nm : -  : - nm
+    <result_info>   10 : Minimum_CD           : 36.48 nm : 36.50 nm : 36.48 nm : 38.98 nm : 34.23 nm : 3.50 nm : 3.10 nm : 4.56 nm : 1.86 nm : 1.56 nm : 2.83 nm : 2.03 nm : 1.83 nm : 2.59 nm : - nm : -  : - nm
+    <result_info>   10 : Maximum_CD           : 36.75 nm : 36.77 nm : 36.75 nm : 39.81 nm : 34.42 nm : 3.67 nm : 3.16 nm : 5.54 nm : 2.83 nm : 2.52 nm : 3.67 nm : 3.22 nm : 2.90 nm : 4.40 nm : - nm : -  : - nm
+    <result_info>   10 : 3Sigma_CD            : 0.42 nm : 0.43 nm : 0.42 nm : 1.27 nm : 0.30 nm : 0.26 nm : 0.09 nm : 1.47 nm : 1.48 nm : 1.46 nm : 1.44 nm : 1.98 nm : 1.81 nm : 2.71 nm : - nm : -  : - nm
+    <result_info>   10 : Mean'_CD             : 36.56 nm : 36.57 nm : 36.56 nm : 39.25 nm : 34.27 nm : 3.61 nm : 3.13 nm : 5.03 nm : 2.52 nm : 2.17 nm : 3.65 nm : 3.12 nm : 2.84 nm : 3.52 nm : - nm : -  : - nm
+    <result_info>   10 : Number of Target     : 3
+    <result_info>   10 : Number of Data       : 3
+    <result_info>   10 : Data Name            : Mean' : Mean : Mean' : Maximum : Minimum : 3Sigma : 3Sigma' : Max-Min : 3Sigma(L.E.) : 3Sigma'(L.E.) : Max-Min(L.E.) : 3Sigma(R.E.) : 3Sigma'(R.E.) : Max-Min(R.E.) : Wiggling_LER : LR_Correlation : Center_Variation : EdgeCenterPosX : EdgeCenterPosY : CenterPosX(nm) : CenterPosY(nm)
+    <result_info>   10 : Data   1             : 36.56 nm : 36.57 nm : 36.56 nm : 39.25 nm : 34.23 nm : 3.61 nm : 3.16 nm : 5.03 nm : 1.86 nm : 1.56 nm : 2.83 nm : 3.22 nm : 2.84 nm : 4.40 nm : * nm : *  : * nm : 197.24 pixel : 161.50 pixel : 260.02 nm : -212.90 nm
+    <result_info>   10 : Data   2             : 36.48 nm : 36.50 nm : 36.48 nm : 38.98 nm : 34.42 nm : 3.50 nm : 3.13 nm : 4.56 nm : 2.52 nm : 2.17 nm : 3.65 nm : 2.03 nm : 1.83 nm : 2.59 nm : * nm : *  : * nm : 268.55 pixel : 255.50 pixel : 354.03 nm : -336.82 nm
+    <result_info>   10 : Data   3             : 36.75 nm : 36.77 nm : 36.75 nm : 39.81 nm : 34.27 nm : 3.67 nm : 3.10 nm : 5.54 nm : 2.83 nm : 2.52 nm : 3.67 nm : 3.12 nm : 2.90 nm : 3.52 nm : * nm : *  : * nm : 340.08 pixel : 247.50 pixel : 448.32 nm : -326.28 nm
+    <result_info>   10 : Center_Position      : 354.12 nm, -292.00 nm
+    &no_of_mp_image 2
+    &mp_image_name 01 S12_M0010-01MS.jpeg
+    &mp_image_name 02 S12_M0010-02MS.tif
+    &meas_condition mag 200011
+    &meas_condition vac 500
+    &meas_condition pixel 512,512
+    &addressing1_score 432
+    &addressing2_score -
+    &measurement_score 702
+    &measurement_afc : 4, M, F, -5012.00, 211.00, 200000, -1, 0, 0000
+    &measurement_afc : 4, M, F, -5012.00, 211.00, 200000, 484, 0, 0000
+  $result 11 MP 1 0,4 8467462,14170219 146009765,279568472 1,-1 0 1 1 1 nm 358.7
+    <result_info>   11 : Multi_Measure        : P
+    <result_info>   11 : Measurement          : Width
+    <result_info>   11 : Object               : Space
+    <result_info>   11 : Kind                 : Multi Point
+    <result_info>   11 : Data                 : Mean'
+    <result_info>   11 : Mean                 : 35.87 nm
+    <result_info>   11 : Mean'                : 35.87 nm
+    <result_info>   11 : Maximum              : 38.38 nm
+    <result_info>   11 : Minimum              : 33.37 nm
+    <result_info>   11 : 3Sigma               : 3.67 nm
+    <result_info>   11 : 3Sigma'              : 3.23 nm
+    <result_info>   11 : Max-Min              : 5.00 nm
+    <result_info>   11 : 3Sigma(L.E.)         : 2.86 nm
+    <result_info>   11 : 3Sigma'(L.E.)        : 2.56 nm
+    <result_info>   11 : Max-Min(L.E.)        : 3.70 nm
+    <result_info>   11 : 3Sigma(R.E.)         : 2.24 nm
+    <result_info>   11 : 3Sigma'(R.E.)        : 2.03 nm
+    <result_info>   11 : Max-Min(R.E.)        : 2.81 nm
+    <result_info>   11 : Wiggling_LER         : * nm
+    <result_info>   11 : LR_Correlation       : * 
+    <result_info>   11 : Center_Variation     : * nm
+    <result_info>   11 : ****** Measurement ACD Data ******
+    <result_info>   11 : Statistical Data Name : Mean' : Mean : Mean' : Maximum : Minimum : 3Sigma : 3Sigma' : Max-Min : 3Sigma(L.E.) : 3Sigma'(L.E.) : Max-Min(L.E.) : 3Sigma(R.E.) : 3Sigma'(R.E.) : Max-Min(R.E.) : Wiggling_LER : LR_Correlation : Center_Variation
+    <result_info>   11 : Average_CD           : 35.87 nm : 35.87 nm : 35.87 nm : 38.38 nm : 33.37 nm : 3.67 nm : 3.23 nm : 5.00 nm : 2.86 nm : 2.56 nm : 3.70 nm : 2.24 nm : 2.03 nm : 2.81 nm : - nm : -  : - nm
+    <result_info>   11 : Minimum_CD           : 35.50 nm : 35.49 nm : 35.50 nm : 37.60 nm : 32.86 nm : 3.03 nm : 2.53 nm : 4.70 nm : 2.81 nm : 2.43 nm : 3.56 nm : 2.18 nm : 2.00 nm : 2.47 nm : - nm : -  : - nm
+    <result_info>   11 : Maximum_CD           : 36.14 nm : 36.16 nm : 36.14 nm : 39.37 nm : 33.79 nm : 4.03 nm : 3.72 nm : 5.58 nm : 2.95 nm : 2.67 nm : 3.86 nm : 2.28 nm : 2.07 nm : 3.08 nm : - nm : -  : - nm
+    <result_info>   11 : 3Sigma_CD            : 0.98 nm : 1.04 nm : 0.98 nm : 2.71 nm : 1.42 nm : 1.67 nm : 1.87 nm : 1.48 nm : 0.23 nm : 0.36 nm : 0.45 nm : 0.16 nm : 0.11 nm : 0.94 nm : - nm : -  : - nm
+    <result_info>   11 : Mean'_CD             : 35.97 nm : 35.96 nm : 35.97 nm : 38.18 nm : 33.48 nm : 3.96 nm : 3.44 nm : 4.74 nm : 2.83 nm : 2.56 nm : 3.68 nm : 2.27 nm : 2.03 nm : 2.87 nm : - nm : -  : - nm
+    <result_info>   11 : Number of Target     : 3
+    <result_info>   11 : Number of Data       : 3
+    <result_info>   11 : Data Name            : Mean' : Mean : Mean' : Maximum : Minimum : 3Sigma : 3Sigma' : Max-Min : 3Sigma(L.E.) : 3Sigma'(L.E.) : Max-Min(L.E.) : 3Sigma(R.E.) : 3Sigma'(R.E.) : Max-Min(R.E.) : Wiggling_LER : LR_Correlation : Center_Variation : EdgeCenterPosX : EdgeCenterPosY : CenterPosX(nm) : CenterPosY(nm)
+    <result_info>   11 : Data   1             : 36.14 nm : 36.16 nm : 36.14 nm : 39.37 nm : 33.79 nm : 3.96 nm : 3.44 nm : 5.58 nm : 2.81 nm : 2.43 nm : 3.86 nm : 2.28 nm : 2.07 nm : 2.87 nm : * nm : *  : * nm : 194.57 pixel : 293.50 pixel : 256.50 nm : -386.92 nm
+    <result_info>   11 : Data   2             : 35.97 nm : 35.96 nm : 35.97 nm : 38.18 nm : 33.48 nm : 3.03 nm : 2.53 nm : 4.70 nm : 2.95 nm : 2.67 nm : 3.68 nm : 2.18 nm : 2.03 nm : 2.47 nm : * nm : *  : * nm : 267.26 pixel : 255.50 pixel : 352.32 nm : -336.82 nm
+    <result_info>   11 : Data   3             : 35.50 nm : 35.49 nm : 35.50 nm : 37.60 nm : 32.86 nm : 4.03 nm : 3.72 nm : 4.74 nm : 2.83 nm : 2.56 nm : 3.56 nm : 2.27 nm : 2.00 nm : 3.08 nm : * nm : *  : * nm : 340.14 pixel : 263.50 pixel : 448.40 nm : -347.37 nm
+    <result_info>   11 : Center_Position      : 352.41 nm, -357.04 nm
+    &no_of_mp_image 2
+    &mp_image_name 01 S12_M0011-01MS.jpeg
+    &mp_image_name 02 S12_M0011-02MS.tif
+    &meas_condition mag 200011
+    &meas_condition vac 500
+    &meas_condition pixel 512,512
+    &addressing1_score 406
+    &addressing2_score -
+    &measurement_score 697
+    &measurement_afc : 4, M, F, -5012.00, 211.00, 200000, -1, 0, 0000
+    &measurement_afc : 4, M, F, -5012.00, 211.00, 200000, 466, 0, 0000
+
