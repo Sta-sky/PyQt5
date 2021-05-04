@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1094</width>
+    <height>861</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <item>
+     <widget class="QSplitter" name="splitter">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <widget class="QTreeWidget" name="treeWidget">
+       <column>
+        <property name="text">
+         <string>根目录</string>
+        </property>
+       </column>
+       <item>
+        <property name="text">
+         <string>test1</string>
+        </property>
+        <item>
+         <property name="text">
+          <string>test2</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>test2</string>
+         </property>
+         <item>
+          <property name="text">
+           <string>test3</string>
+          </property>
+         </item>
+        </item>
+       </item>
+      </widget>
+      <widget class="QLabel" name="img_label">
+       <property name="minimumSize">
+        <size>
+         <width>300</width>
+         <height>500</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>v犯得上发生变更发表观点 </string>
+       </property>
+      </widget>
+      <widget class="QTextEdit" name="img_info"/>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1094</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>开始</string>
+    </property>
+    <addaction name="insert_img"/>
+    <addaction name="more_insert_img"/>
+    <addaction name="quit_windown"/>
+   </widget>
+   <widget class="QMenu" name="menu_2">
+    <property name="title">
+     <string>工具</string>
+    </property>
+   </widget>
+   <addaction name="menu"/>
+   <addaction name="menu_2"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QToolBar" name="toolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="insert_img"/>
+   <addaction name="separator"/>
+   <addaction name="more_insert_img"/>
+   <addaction name="separator"/>
+   <addaction name="quit_windown"/>
+   <addaction name="separator"/>
+  </widget>
+  <action name="insert_img">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset>
+     <normaloff>D:/background/b_background/dog.png</normaloff>D:/background/b_background/dog.png</iconset>
+   </property>
+   <property name="text">
+    <string>导入图片</string>
+   </property>
+   <property name="toolTip">
+    <string>导入图片</string>
+   </property>
+  </action>
+  <action name="more_insert_img">
+   <property name="icon">
+    <iconset>
+     <normaloff>D:/background/b_background/cc2e9d9b67b48bd74e1afba11912d0d7.jpg</normaloff>D:/background/b_background/cc2e9d9b67b48bd74e1afba11912d0d7.jpg</iconset>
+   </property>
+   <property name="text">
+    <string>批量导入图片</string>
+   </property>
+   <property name="toolTip">
+    <string>批量导入图片</string>
+   </property>
+  </action>
+  <action name="quit_windown">
+   <property name="icon">
+    <iconset>
+     <normaloff>D:/background/b_background/kpg.png</normaloff>D:/background/b_background/kpg.png</iconset>
+   </property>
+   <property name="text">
+    <string>退出</string>
+   </property>
+   <property name="toolTip">
+    <string>退出</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
