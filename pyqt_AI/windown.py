@@ -25,7 +25,7 @@ class MianWindow(QMainWindow, Ui_MainWindow):
 		try:
 			result1 = QFileDialog.getOpenFileNames(self, '葵花宝典', 'D:/background/b_background', '图片(*.png *.jpg *.jfif)')
 		except Exception as e:
-			return None
+			return
 		base_path = result1[0][0].split('/')
 		img_list = result1[0]
 		base_path.pop()

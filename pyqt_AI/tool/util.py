@@ -33,15 +33,15 @@ def handle_result(data):
 	return res_list
 
 
-def set_font():
+def set_font(bold=False, italic=False, weight=50):
 	# 初始化一个label框
 	try:
 		font = QtGui.QFont()
 		font.setFamily("微软雅黑")
 		font.setPointSize(12)
-		font.setBold(True)
-		font.setItalic(True)
-		font.setWeight(50)
+		font.setBold(bold)
+		font.setItalic(italic)
+		font.setWeight(weight)
 		return font
 	except Exception as e:
 		return False
