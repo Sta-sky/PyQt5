@@ -4,10 +4,11 @@
 import sys
 from PyQt5 import QtCore
 from PyQt5.QtCore import QUrl
-from PyQt5.QtGui import QIcon
-from PyQt5.QtWidgets import QApplication, QMainWindow, QFileDialog, QTreeWidgetItem
+from PyQt5.QtGui import QIcon, QKeySequence
+from PyQt5.QtWidgets import QApplication, QMainWindow, QFileDialog, QTreeWidgetItem, QShortcut
 from PyQt5.QtMultimedia import *
 
+from utils import echo
 from video_ui import Ui_MainWindow
 
 
@@ -24,8 +25,8 @@ class Car_window(QMainWindow, Ui_MainWindow):
         # 视频操作  		# 定义player
         self.player = QMediaPlayer()
         self.player.setVideoOutput(self.widget)  # 视频播放输出的widget，就是上面定义的
-        self.player.positionChanged.connect(self.changeSlide)
-        self.player.durationChanged.connect(self.getprocess)
+        self.player.positionChanged.connect(self.changeSlide)  # 位置改变触发，设置进度
+        self.player.durationChanged.connect(self.getprocess)         # 时间改变后触发设置时间进度
         self.sld_video.sliderMoved.connect(self.updatePosition)
 
         # 这里进行按钮的绑定
@@ -35,6 +36,37 @@ class Car_window(QMainWindow, Ui_MainWindow):
         self.widget.doubleClickedItem.connect(self.videoDoubleClicked)
         self.btn_choose_videos.clicked.connect(self.choose_videos_tree)
         self.treeWidget.clicked.connect(self.handle_click_video)
+        self.quick_forward.clicked.connect(self.video_forward)
+        self.quick_back.clicked.connect(self.video_back)
+
+        # 快捷键控制进度
+        self.quick_left = QShortcut(QKeySequence('left'), self)
+        self.quick_right = QShortcut(QKeySequence('right'), self)
+        self.quick_space = QShortcut(QKeySequence('space'), self)
+
+        self.quick_left.activated.connect(self.video_back)
+        self.quick_right.activated.connect(self.video_forward)
+        self.quick_space.activated.connect(self.playVideo)
+
+    def video_forward(self):
+        forward_position = self.player.position() + 5000
+        if forward_position == 5000:
+            echo(self, '请添加文件')
+            return
+        if forward_position > self.sld_video.maximum():
+            forward_position = self.sld_video.maximum()
+        self.player.setPosition(forward_position)
+        self.displayTime(self.sld_video.maximum() - forward_position)
+
+    def video_back(self):
+        back_position = self.player.position() - 5000
+        if back_position == -5000:
+            echo(self, '请添加文件')
+            return
+        if back_position < 0:
+            back_position = 0
+        self.player.setPosition(back_position)
+        self.displayTime(self.sld_video.maximum() - back_position)
 
     def getprocess(self, total_time):
         """total_time 当前总时长"""
@@ -46,11 +78,6 @@ class Car_window(QMainWindow, Ui_MainWindow):
     def updatePosition(self, v):
         self.player.setPosition(v)
         self.displayTime(self.sld_video.maximum() - v)
-
-    # 槽函数练习
-    @QtCore.pyqtSlot()
-    def on_pushButton_10_clicked(self):
-        self.label_5.setText("槽函数")
 
     def handle_click_video(self):
         try:
