@@ -70,10 +70,9 @@ class Car_window(QMainWindow, Ui_MainWindow):
 
     def choose_videos_tree(self):
         try:
-
             self.base_path = ''
             result1 = QFileDialog.getOpenFileNames(
-                self, '选择视频', 'D:/background/b_background', '所有(*.*);;图片(*.png *.jpg *.jfif)')
+                self, '选择视频', 'c:/', '所有(*.mp4 *.wmv, *.AVI, *.MOV *.3GP);;图片(*.png *.jpg *.jfif)')
             base_path = result1[0][0].split('/')
             img_list = result1[0]
             base_path.pop()
@@ -87,7 +86,7 @@ class Car_window(QMainWindow, Ui_MainWindow):
                 child = QTreeWidgetItem(root_file)
                 child.setText(0, img)
         except Exception as e:
-            echo(self, str(e))
+            return
 
     def openVideoFile(self):
         try:
