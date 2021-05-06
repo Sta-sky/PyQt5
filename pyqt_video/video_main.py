@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # 主函数文件。syswin.py
 
 import sys
@@ -7,7 +8,6 @@ from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QApplication, QMainWindow, QFileDialog, QTreeWidgetItem
 from PyQt5.QtMultimedia import *
 
-from utils import echo
 from video_ui import Ui_MainWindow
 
 
