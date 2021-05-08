@@ -40,9 +40,9 @@ class Car_window(QMainWindow, Ui_MainWindow):
         self.quick_back.clicked.connect(self.video_back)
 
         # 快捷键控制进度
-        self.quick_left = QShortcut(QKeySequence('left'), self)
-        self.quick_right = QShortcut(QKeySequence('right'), self)
-        self.quick_space = QShortcut(QKeySequence('space'), self)
+        self.quick_left = QShortcut(QKeySequence('Left'), self)
+        self.quick_right = QShortcut(QKeySequence('Right'), self)
+        self.quick_space = QShortcut(QKeySequence('Space'), self)
 
         self.quick_left.activated.connect(self.video_back)
         self.quick_right.activated.connect(self.video_forward)
@@ -99,7 +99,7 @@ class Car_window(QMainWindow, Ui_MainWindow):
         try:
             self.base_path = ''
             result1 = QFileDialog.getOpenFileNames(
-                self, '选择视频', 'c:/', '所有(*.mp4 *.wmv, *.AVI, *.MOV *.3GP);;图片(*.png *.jpg *.jfif)')
+                self, '选择视频', 'c:/', '所有(*.mp4 *.wmv *.AVI *.MOV *.3GP);;图片(*.png *.jpg *.jfif)')
             base_path = result1[0][0].split('/')
             img_list = result1[0]
             base_path.pop()
