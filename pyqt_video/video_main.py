@@ -42,14 +42,18 @@ class Car_window(QMainWindow, Ui_MainWindow):
         self.treeWidget.clicked.connect(self.handle_click_video)
         self.quick_forward.clicked.connect(self.video_forward)
         self.quick_back.clicked.connect(self.video_back)
-
+        
         # 快捷键控制进度
         self.quick_left = QShortcut(QKeySequence('Left'), self)
         self.quick_right = QShortcut(QKeySequence('Right'), self)
+        self.quick_up = QShortcut(QKeySequence('Up'), self)
+        self.quick_down = QShortcut(QKeySequence('Down'), self)
         self.quick_space = QShortcut(QKeySequence('Space'), self)
-
+        
         self.quick_left.activated.connect(self.video_back)
         self.quick_right.activated.connect(self.video_forward)
+        self.quick_up.activated.connect(self.voice_big)
+        self.quick_down.activated.connect(self.voice_small)
         self.quick_space.activated.connect(self.playVideo)
         self.player.setVolume(50)
     
@@ -73,6 +77,7 @@ class Car_window(QMainWindow, Ui_MainWindow):
             self.voice_video.setText(f' | {voice}%')
         except Exception as e:
             echo(self, str(e))
+            
     def video_forward(self):
         forward_position = self.player.position() + 5000
         if forward_position == 5000:
@@ -82,7 +87,7 @@ class Car_window(QMainWindow, Ui_MainWindow):
             forward_position = self.sld_video.maximum()
         self.player.setPosition(forward_position)
         self.displayTime(self.sld_video.maximum() - forward_position)
-
+    
     def video_back(self):
         back_position = self.player.position() - 5000
         if back_position == -5000:
@@ -93,17 +98,35 @@ class Car_window(QMainWindow, Ui_MainWindow):
         self.player.setPosition(back_position)
         self.displayTime(self.sld_video.maximum() - back_position)
 
+    def voice_big(self):
+        voice_size = self.player.volume()
+        if voice_size >= 100:
+            return
+        else:
+            voice_size += 5
+            self.player.setVolume(voice_size)
+            self.voice_video.setText(f' | {voice_size}%')
+
+    def voice_small(self):
+        voice_size = self.player.volume()
+        if voice_size <= 0:
+            return
+        else:
+            voice_size -= 5
+            self.player.setVolume(voice_size)
+            self.voice_video.setText(f' | {voice_size}%')
+    
     def getprocess(self, total_time):
         """total_time 当前总时长"""
         self.sld_video.setRange(0, total_time)
         self.sld_video.setEnabled(True)
         self.displayTime(total_time)
-
+    
     # 用进度条更新视频位置
     def updatePosition(self, v):
         self.player.setPosition(v)
         self.displayTime(self.sld_video.maximum() - v)
-
+    
     def handle_click_video(self):
         try:
             video_name = self.treeWidget.selectedItems()[0].text(0)
@@ -119,7 +142,7 @@ class Car_window(QMainWindow, Ui_MainWindow):
             self.FLAG_PLAY = True
         except Exception as e:
             return
-
+    
     def choose_videos_tree(self):
         try:
             self.base_path = ''
@@ -138,7 +161,7 @@ class Car_window(QMainWindow, Ui_MainWindow):
                 child.setText(0, img)
         except Exception as e:
             return
-
+    
     def openVideoFile(self):
         try:
             file = QFileDialog.getOpenFileUrl()[0]
@@ -152,7 +175,7 @@ class Car_window(QMainWindow, Ui_MainWindow):
             self.FLAG_PLAY = True
         except Exception as e:
             return
-
+    
     def playVideo(self):
         # 如果没有播放，则进行播放
         if not self.FLAG_PLAY:
@@ -161,19 +184,19 @@ class Car_window(QMainWindow, Ui_MainWindow):
         else:
             self.player.pause()
             self.FLAG_PLAY = False
-
+    
     def stopVideo(self):
         self.player.stop()
-
+    
     def changeSlide(self, position):
         self.sld_video.setValue(position)
         self.displayTime(self.sld_video.maximum() - position)
-
+    
     def displayTime(self, ms):
         minutes = int(ms / 60000)
         seconds = int((ms - minutes * 60000) / 1000)
         self.lab_video.setText('{}:{}'.format(minutes, seconds))
-
+    
     def videoDoubleClicked(self, text):
         if self.player.duration() > 0:  # 开始播放
             # 后才允许进行全屏操作

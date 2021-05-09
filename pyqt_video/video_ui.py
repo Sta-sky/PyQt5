@@ -271,8 +271,16 @@ class Ui_MainWindow(object):
         self.btn_play.setText(_translate("MainWindow", "开始/暂停"))
         self.btn_stop.setText(_translate("MainWindow", "停止"))
         self.quick_forward.setText(_translate("MainWindow", "快进 >>> 5秒"))
+        
+        
         self.quick_back.setToolTip('左键快退')
         self.quick_forward.setToolTip('右键快退')
+        self.btn_play.setStyleSheet('color: yellow')
+        self.quick_back.setStyleSheet('color: red')
+        self.quick_forward.setStyleSheet('color: red')
+        self.voice_video.setStyleSheet('color: red')
+        self.lab_video.setStyleSheet('color: yellow')
+        self.voice_video.setToolTip('up 增加 down 降低')
 
         font = set_font(weight=50)
         font_list = [self.btn_6, self.btn_7, self.video_name, self.btn_choose, self.btn_choose_videos, self.btn_1,
