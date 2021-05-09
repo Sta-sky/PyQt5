@@ -2,7 +2,6 @@
 # 主函数文件。syswin.py
 
 import sys
-from PyQt5 import QtCore
 from PyQt5.QtCore import QUrl
 from PyQt5.QtGui import QIcon, QKeySequence
 from PyQt5.QtWidgets import QApplication, QMainWindow, QFileDialog, QTreeWidgetItem, QShortcut
@@ -99,7 +98,7 @@ class Car_window(QMainWindow, Ui_MainWindow):
         try:
             self.base_path = ''
             result1 = QFileDialog.getOpenFileNames(
-                self, '选择视频', 'c:/', '所有(*.mp4 *.wmv *.AVI *.MOV *.3GP);;图片(*.png *.jpg *.jfif)')
+                self, '选择视频', 'c:/', '所有(*.mp4 *.wmv *.AVI *.MOV *.3GP *.mp3);;图片(*.png *.jpg *.jfif)')
             base_path = result1[0][0].split('/')
             img_list = result1[0]
             base_path.pop()
