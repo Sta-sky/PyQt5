@@ -27,12 +27,17 @@ class Car_window(QMainWindow, Ui_MainWindow):
         self.player.positionChanged.connect(self.changeSlide)  # 位置改变触发，设置进度
         self.player.durationChanged.connect(self.getprocess)         # 时间改变后触发设置时间进度
         self.sld_video.sliderMoved.connect(self.updatePosition)
-
+        
         # 这里进行按钮的绑定
         self.btn_choose.clicked.connect(self.openVideoFile)
         self.btn_play.clicked.connect(self.playVideo)
         self.btn_stop.clicked.connect(self.stopVideo)
         self.widget.doubleClickedItem.connect(self.videoDoubleClicked)
+        # 控制音量
+        try:
+            self.widget.wheelItem.connect(self.handle_voice)
+        except Exception as e:
+            echo(self, str(e))
         self.btn_choose_videos.clicked.connect(self.choose_videos_tree)
         self.treeWidget.clicked.connect(self.handle_click_video)
         self.quick_forward.clicked.connect(self.video_forward)
@@ -46,7 +51,28 @@ class Car_window(QMainWindow, Ui_MainWindow):
         self.quick_left.activated.connect(self.video_back)
         self.quick_right.activated.connect(self.video_forward)
         self.quick_space.activated.connect(self.playVideo)
-
+        self.player.setVolume(50)
+    
+    def handle_voice(self, wheel_size):
+        try:
+            voice_size = self.player.volume()
+            wheel_size = int(wheel_size)
+            if wheel_size < 0:
+                if voice_size <= 0:
+                    return
+                else:
+                    voice_size -= 5
+                    self.player.setVolume(voice_size)
+            if wheel_size > 0:
+                if voice_size >= 100:
+                    return
+                else:
+                    voice_size += 5
+                    self.player.setVolume(voice_size)
+            voice = self.player.volume()
+            self.voice_video.setText(f' | {voice}%')
+        except Exception as e:
+            echo(self, str(e))
     def video_forward(self):
         forward_position = self.player.position() + 5000
         if forward_position == 5000:
@@ -97,8 +123,7 @@ class Car_window(QMainWindow, Ui_MainWindow):
     def choose_videos_tree(self):
         try:
             self.base_path = ''
-            result1 = QFileDialog.getOpenFileNames(
-                self, '选择视频', 'c:/', '所有(*.mp4 *.wmv *.AVI *.MOV *.3GP *.mp3);;图片(*.png *.jpg *.jfif)')
+            result1 = QFileDialog.getOpenFileNames(self, '选择视频', 'c:/', '所有(*.*)')
             base_path = result1[0][0].split('/')
             img_list = result1[0]
             base_path.pop()

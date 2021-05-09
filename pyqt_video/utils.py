@@ -17,5 +17,5 @@ def set_font(bold=False, italic=False, weight=50):
 	
 def echo(self, info):  # 消息：信息
 	print(info)
-	QMessageBox.information(self, "消息框标题", str(info), QMessageBox.Yes | QMessageBox.No)
+	QMessageBox.information(self, "消息框标题", str(info), QMessageBox.Yes)
 
