@@ -192,6 +192,9 @@ class Ui_MainWindow(object):
         self.lab_video = QtWidgets.QLabel(self.frame_2)
         self.lab_video.setObjectName("lab_video")
         self.horizontalLayout_10.addWidget(self.lab_video)
+        self.lab_video_start = QtWidgets.QLabel(self.frame_2)
+        self.lab_video_start.setObjectName("lab_video_start")
+        self.horizontalLayout_10.addWidget(self.lab_video_start)
         self.voice_video = QtWidgets.QLabel(self.frame_2)
         self.voice_video.setObjectName("voice_video")
         self.horizontalLayout_10.addWidget(self.voice_video)
@@ -264,8 +267,9 @@ class Ui_MainWindow(object):
         self.btn_choose_videos.setText(_translate("MainWindow", "批量导入文件"))
         self.btn_1.setText(_translate("MainWindow", "待定1"))
         self.btn_2.setText(_translate("MainWindow", "待定2"))
-        self.lab_video.setText(_translate("MainWindow", "00:00"))
-        self.voice_video.setText(_translate("MainWindow", " | 50%"))
+        self.lab_video.setText(_translate("MainWindow", "|00:00"))
+        self.lab_video_start.setText(_translate("MainWindow", "|00:00"))
+        self.voice_video.setText(_translate("MainWindow", "|50%|"))
         self.quick_back.setText(_translate("MainWindow", "快退 <<< 5秒"))
         self.btn_4.setText(_translate("MainWindow", "待定4"))
         self.btn_play.setText(_translate("MainWindow", "开始/暂停"))
@@ -280,11 +284,12 @@ class Ui_MainWindow(object):
         self.quick_forward.setStyleSheet('color: red')
         self.voice_video.setStyleSheet('color: red')
         self.lab_video.setStyleSheet('color: yellow')
+        self.lab_video_start.setStyleSheet('color: yellow')
         self.voice_video.setToolTip('up 增加 down 降低')
 
         font = set_font(weight=50)
         font_list = [self.btn_6, self.btn_7, self.video_name, self.btn_choose, self.btn_choose_videos, self.btn_1,
-                     self.btn_2, self.lab_video, self.voice_video, self.quick_forward, self.quick_back, self.btn_4, self.btn_play,
+                     self.btn_2, self.lab_video, self.lab_video_start, self.voice_video, self.quick_forward, self.quick_back, self.btn_4, self.btn_play,
                      self.btn_stop]
         [item.setFont(font) for item in font_list]
 

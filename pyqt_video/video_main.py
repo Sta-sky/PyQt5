@@ -86,7 +86,7 @@ class Car_window(QMainWindow, Ui_MainWindow):
         if forward_position > self.sld_video.maximum():
             forward_position = self.sld_video.maximum()
         self.player.setPosition(forward_position)
-        self.displayTime(self.sld_video.maximum() - forward_position)
+        self.displayTime(forward_position)
     
     def video_back(self):
         back_position = self.player.position() - 5000
@@ -96,7 +96,7 @@ class Car_window(QMainWindow, Ui_MainWindow):
         if back_position < 0:
             back_position = 0
         self.player.setPosition(back_position)
-        self.displayTime(self.sld_video.maximum() - back_position)
+        self.displayTime(back_position)
 
     def voice_big(self):
         voice_size = self.player.volume()
@@ -120,12 +120,14 @@ class Car_window(QMainWindow, Ui_MainWindow):
         """total_time 当前总时长"""
         self.sld_video.setRange(0, total_time)
         self.sld_video.setEnabled(True)
-        self.displayTime(total_time)
+        minutes = int(total_time / 60000)
+        seconds = int((total_time - minutes * 60000) / 1000)
+        self.lab_video_start.setText(' | {}:{}'.format(minutes, seconds))
     
     # 用进度条更新视频位置
     def updatePosition(self, v):
         self.player.setPosition(v)
-        self.displayTime(self.sld_video.maximum() - v)
+        self.displayTime(v)
     
     def handle_click_video(self):
         try:
@@ -190,7 +192,7 @@ class Car_window(QMainWindow, Ui_MainWindow):
     
     def changeSlide(self, position):
         self.sld_video.setValue(position)
-        self.displayTime(self.sld_video.maximum() - position)
+        self.displayTime(position)
     
     def displayTime(self, ms):
         minutes = int(ms / 60000)
