@@ -27,9 +27,14 @@ class MyTable(QTableView):
     def resizeEvent(self, e: QtGui.QResizeEvent) -> None:
         pass
 
-    def mousePressEvent(self, et):
+    def mousePressEvent(self, event):
         """鼠标按下事件"""
-        print('按下鼠标')
+        if event.button() == Qt.LeftButton:
+            print('鼠标左键点击')
+        if event.button() == Qt.RightButton:
+            print('鼠标右键点击')
+        elif event.button() == Qt.MidButton:
+            print('鼠标中键点击')
 
     def mouseMoveEvent(self, e):
         """ 鼠标按下移动事件"""
@@ -62,13 +67,3 @@ class MyTable(QTableView):
         else:
             print('释放键盘')
 
-    def wheelEvent(self, wheel: QtGui.QWheelEvent) -> None:
-        val = wheel.angleDelta().y()
-        if val > 0:
-            print(' 滑轮 up ')
-            width = self.width() + 20
-        else:
-            print('滑轮 down')
-            print(self.width())
-            width = self.width() - 20
-        self.setMinimumWidth(width)
