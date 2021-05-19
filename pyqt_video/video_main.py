@@ -2,8 +2,8 @@
 # 主函数文件。syswin.py
 
 import sys
-from PyQt5.QtCore import QUrl
-from PyQt5.QtGui import QIcon, QKeySequence
+from PyQt5.QtCore import QUrl, Qt
+from PyQt5.QtGui import QIcon, QKeySequence, QMouseEvent
 from PyQt5.QtWidgets import QApplication, QMainWindow, QFileDialog, QTreeWidgetItem, QShortcut
 from PyQt5.QtMultimedia import *
 
@@ -33,6 +33,7 @@ class Car_window(QMainWindow, Ui_MainWindow):
         self.btn_play.clicked.connect(self.playVideo)
         self.btn_stop.clicked.connect(self.stopVideo)
         self.widget.doubleClickedItem.connect(self.videoDoubleClicked)
+        self.widget.mouseclick.connect(self.handle_mouseclick)
         # 控制音量
         try:
             self.widget.wheelItem.connect(self.handle_voice)
@@ -56,6 +57,10 @@ class Car_window(QMainWindow, Ui_MainWindow):
         self.quick_down.activated.connect(self.voice_small)
         self.quick_space.activated.connect(self.playVideo)
         self.player.setVolume(50)
+    
+    def handle_mouseclick(self, info):
+        print(info)
+        # echo(self, info)
     
     def handle_voice(self, wheel_size):
         try:
