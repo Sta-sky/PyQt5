@@ -3,8 +3,8 @@ from PyQt5 import QtGui
 from PyQt5.QtCore import Qt, QSize, QRect, QMetaObject, QCoreApplication
 from PyQt5.QtWidgets import QWidget, QHBoxLayout, QSplitter, QLabel, QTableWidget, QMenuBar, QStatusBar
 
-from pyqt5_case_code.图片按比例拉伸.img_ui import MyLabel
-from pyqt5_case_code.图片按比例拉伸.table_ui import MyTable
+from 控件总结.图片按比例拉伸.img_ui import MyLabel
+from 控件总结.图片按比例拉伸.table_ui import MyTable
 
 
 class Ui_MainWindow(object):

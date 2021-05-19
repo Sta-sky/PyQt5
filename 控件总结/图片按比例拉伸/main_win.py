@@ -3,7 +3,7 @@ import sys
 
 from PyQt5.QtWidgets import QMainWindow, QApplication, QMessageBox
 
-from pyqt5_case_code.图片按比例拉伸.label_img_ui import Ui_MainWindow
+from 控件总结.图片按比例拉伸.label_img_ui import Ui_MainWindow
 
 
 class MyMain(QMainWindow, Ui_MainWindow):

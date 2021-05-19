@@ -11,7 +11,7 @@ class MyLabel(QLabel):
         self.parent = parent
         self.setObjectName(u"label")
         self.setMinimumSize(QSize(200, 300))
-        self.pixmap = QPixmap('./test3.jpg')
+        self.pixmap = QPixmap('./25.jpg')
         self.point = QPoint(0, 0)
 
     def init_img(self, path):
@@ -43,41 +43,6 @@ class MyLabel(QLabel):
 
     def draw_img(self, painter):
         painter.drawPixmap(self.point, self.scale_img)
-
-    def mousePressEvent(self, et):
-        """鼠标按下事件"""
-        print('按下鼠标')
-
-    def mouseMoveEvent(self, e):
-        """ 鼠标按下移动事件"""
-        print('移动鼠标')
-
-    def mouseReleaseEvent(self, ev):
-        """鼠标松开事件"""
-        print('松开鼠标')
-
-    def focusInEvent(self, e):
-        """聚焦窗口事件"""
-        print('窗口焦点聚焦')
-
-    def focusOutEvent(self, ev):
-        """从窗口移出，失去聚焦事件"""
-        print('窗口焦点消失')
-
-    def enterEvent(self, a0):
-        """鼠标进入组件事件"""
-        print('进入组件')
-
-    def keyPressEvent(self, event: QtGui.QKeyEvent) -> None:
-        print(event.key())
-        print(Qt.Key_Up)
-        print('按下键盘')
-
-    def keyReleaseEvent(self, event: QtGui.QKeyEvent) -> None:
-        if event.isAutoRepeat():
-            pass
-        else:
-            print('释放键盘')
 
     def wheelEvent(self, wheel: QtGui.QWheelEvent) -> None:
         val = wheel.angleDelta().y()
