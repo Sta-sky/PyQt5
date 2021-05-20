@@ -7,8 +7,7 @@ from PyQt5.QtWidgets import QLabel
 
 class MyLabel(QLabel):
     def __init__(self, parent):
-        super(MyLabel, self).__init__()
-        self.parent = parent
+        super(MyLabel, self).__init__(parent)
         self.setObjectName(u"label")
         self.setMinimumSize(QSize(200, 300))
         self.pixmap = QPixmap('./25.jpg')
@@ -54,3 +53,34 @@ class MyLabel(QLabel):
             print(self.width())
             width = self.width() - 20
         self.setMinimumWidth(width)
+
+    def mousePressEvent(self, event):
+        """鼠标按下事件"""
+        if event.button() == Qt.LeftButton:
+            print('鼠标左键点击')
+        if event.button() == Qt.RightButton:
+            print('鼠标右键点击')
+        elif event.button() == Qt.MidButton:
+            print('鼠标中键点击')
+
+    def mouseMoveEvent(self, e):
+        """ 鼠标按下移动事件"""
+        print('移动鼠标')
+
+    def mouseReleaseEvent(self, ev):
+        """鼠标松开事件"""
+        print('松开鼠标')
+
+    def focusInEvent(self, e):
+        """聚焦窗口事件"""
+        print('窗口焦点聚焦')
+
+    def focusOutEvent(self, ev):
+        """从窗口移出，失去聚焦事件"""
+        print('窗口焦点消失')
+
+    def enterEvent(self, a0):
+        """鼠标进入组件事件"""
+        print('进入组件')
+
+
