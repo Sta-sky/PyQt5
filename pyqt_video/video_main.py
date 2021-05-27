@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
 # 主函数文件。syswin.py
-
+import os
 import sys
-from PyQt5.QtCore import QUrl, Qt
-from PyQt5.QtGui import QIcon, QKeySequence, QMouseEvent
-from PyQt5.QtWidgets import QApplication, QMainWindow, QFileDialog, QTreeWidgetItem, QShortcut
+
+from PyQt5 import QtGui
+from PyQt5.QtCore import QUrl
+from PyQt5.QtGui import QIcon, QKeySequence
+from PyQt5.QtWidgets import QApplication, QMainWindow, QFileDialog, QTreeWidgetItem, QShortcut, qApp
 from PyQt5.QtMultimedia import *
 
 from utils import echo
@@ -27,13 +29,18 @@ class Car_window(QMainWindow, Ui_MainWindow):
         self.player.positionChanged.connect(self.changeSlide)  # 位置改变触发，设置进度
         self.player.durationChanged.connect(self.getprocess)         # 时间改变后触发设置时间进度
         self.sld_video.sliderMoved.connect(self.updatePosition)
-        
+        self.video_list = qApp.arguments()
+        if len(self.video_list) > 1:
+            self.curr_video = self.video_list[1]
+            if os.path.exists(self.curr_video):
+                self.curr_play_video()
+            else:
+                echo(self, '路径不存在')
         # 这里进行按钮的绑定
         self.btn_choose.clicked.connect(self.openVideoFile)
         self.btn_play.clicked.connect(self.playVideo)
         self.btn_stop.clicked.connect(self.stopVideo)
         self.widget.doubleClickedItem.connect(self.videoDoubleClicked)
-        self.widget.mouseclick.connect(self.handle_mouseclick)
         # 控制音量
         try:
             self.widget.wheelItem.connect(self.handle_voice)
@@ -57,11 +64,18 @@ class Car_window(QMainWindow, Ui_MainWindow):
         self.quick_down.activated.connect(self.voice_small)
         self.quick_space.activated.connect(self.playVideo)
         self.player.setVolume(50)
-    
-    def handle_mouseclick(self, info):
-        print(info)
-        # echo(self, info)
-    
+
+    def curr_play_video(self):
+        try:
+            video_name = os.path.split(self.curr_video)[1]
+            self.video_name.setText(f'当前播放视频为： {video_name}')
+            print(self.curr_video)
+            self.player.setMedia(QMediaContent(QUrl.fromLocalFile(self.curr_video)))  # 选取视频文件
+            self.player.play()  # 播放视频
+            self.FLAG_PLAY = True
+        except Exception as e:
+            return
+
     def handle_voice(self, wheel_size):
         try:
             voice_size = self.player.volume()
@@ -143,8 +157,9 @@ class Car_window(QMainWindow, Ui_MainWindow):
             current_node_index = self.treeWidget.indexOfTopLevelItem(item)
             self.base_path = self.base_path_list[current_node_index]
             video_path = f'{self.base_path}/{video_name}'
+            self.curr_video = video_path
             self.video_name.setText(f'当前播放视频为： {video_name}')
-            self.player.setMedia(QMediaContent(QUrl.fromLocalFile(video_path)))  # 选取视频文件
+            self.player.setMedia(QMediaContent(QUrl.fromLocalFile(self.curr_video)))  # 选取视频文件
             self.player.play()  # 播放视频
             self.FLAG_PLAY = True
         except Exception as e:
@@ -172,12 +187,13 @@ class Car_window(QMainWindow, Ui_MainWindow):
     def openVideoFile(self):
         try:
             file = QFileDialog.getOpenFileUrl()[0]
+            self.curr_video = file
             file_flag = str(file).split('(')[-1]
             if len(file_flag) < 4:
                 return
             video_name = str(file).split('/')[-1].replace(')', '')
             self.video_name.setText(f'当前播放视频为： {video_name}')
-            self.player.setMedia(QMediaContent(file))  # 选取视频文件
+            self.player.setMedia(QMediaContent(self.curr_video))  # 选取视频文件
             self.player.play()  # 播放视频
             self.FLAG_PLAY = True
         except Exception as e:
@@ -219,6 +235,7 @@ class Car_window(QMainWindow, Ui_MainWindow):
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
+    print(app.arguments())
     main_window = Car_window()
     main_window.show()
     sys.exit(app.exec_())
