@@ -19,7 +19,7 @@ class Ui_MainWindow(object):
         self.more_insert_img = QAction(MainWindow)
         self.more_insert_img.setObjectName(u"more_insert_img")
         icon1 = QIcon()
-        icon1.addFile(u"D:/background/b_background/cc2e9d9b67b48bd74e1afba11912d0d7.jpg", QSize(), QIcon.Normal, QIcon.Off)
+        icon1.addFile(u"D:/background/b_background/test3.jpg", QSize(), QIcon.Normal, QIcon.Off)
         self.more_insert_img.setIcon(icon1)
         self.quit_windown = QAction(MainWindow)
         self.quit_windown.setObjectName(u"quit_windown")
