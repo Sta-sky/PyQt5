@@ -1,0 +1,101 @@
+## python笔试题总结
+
+[TOC]
+
+##### 1、按字典中的 val 进行排序排序
+
+
+```python
+def dic_sorted(parse_dic):
+ 
+	res = sorted(parse_dic.items(), key=lambda x: x[1])
+	_dic = {}
+    
+	for key, val in res:
+		_dic.update({key: val})
+	return _dic
+
+dic = {'a': 4, 'b': 34, "c": 1, 'd': 23}
+dic_res = dic_sorted(dic)
+print(dic_res)
+```
+
+
+
+##### 2、按列表中的字典元素进行排序。
+
+
+```python
+def list_sort(_list):
+	res = sorted(_list, key=lambda x: x['age'])
+	return res
+
+list_ = [{'name': 'huang', 'age': 20}, {'name': 'dang', 'age': 15}, {'name': 'yang', 'age': 16}]
+list_res = list_sort(list_)
+print(list_res)
+```
+
+
+
+##### 3、写一个列表生成式， 产生一个公差为11的等差数列；
+
+```python
+res = [i * 11 for i in range(10)]
+print(res)
+```
+
+
+
+##### 4、求两个列表中的相同元素，不同的元素
+
+```python
+list1 = [1, 2, 3, 4]
+list2 = [3, 4, 5, 6, 7]
+set1 = set(list1)
+set2 = set(list2)
+交集--相同元素
+	print(set1 & set2)
+补集	
+	print(set1 ^ set2)
+并集
+	print(set1 | set2)
+```
+
+
+
+##### 8、在列表中找寻两个数相加等于目标数值的元素。。
+
+
+```python
+"""
+	用目标函数减去遍历后列表中的每个元素，
+	如果结果在列表中，则这两个元素就是目标数之和。
+"""
+def parse(num_list, targets):
+    ret = []
+    for index, val in enumerate(num_list):
+        res = targets - val
+        if res in num_list:
+           ret.append(index)
+    return ret
+
+num_lists = [1, 2, 7, 5]
+target = 3
+res = parse(num_lists, target)
+print(res)
+
+```
+
+
+
+##### 9、装饰器实现一个单例模式
+
+```python
+def singleton(cls):
+    instence = {}
+    def get_instence(*args, **kwargs):
+        if cls not in instence:
+            return instence[cls] == cls(*args, **kwargs)
+        return instence[cls]
+    return get_instence
+```
