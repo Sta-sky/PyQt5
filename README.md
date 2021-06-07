@@ -399,5 +399,328 @@ windownFullScreen  填满窗口
         	 
 ```
 
+##### 2、定时器
+
+~~~python
+qtime = QTime（）
+def test_time():
+	pass
+qtime.timeout.connect(test_time)
+
+
+~~~
+
+##### 3、进度管理QProgressDialog
+
+~~~python
+1、创建与使用:
+    pd = QProgressDialog(str_1, str_2, int_1, int_2)
+	参数解释:
+    	str_1: 描述信息，
+        str_2: 取消按钮文本
+        int_1 : 最小值
+        int_2: 最大值
+    
+2、显示
+   手动打开:
+        pd.show()  --- 非模态
+        pd.open()   ----  模态 -- 只能操作当前窗口
+        
+  	设置打开时间：
+    	pd.setMinimumDuration(ms)
+        
+   手动设置模态：
+    	pd.setModal(True)
+        
+        
+   自动重置、关闭:
+    	pd.setAutoReset()
+        pd.setAutoClose()
+    
+    
+3、设置
+	获取:
+        最大值 maximum
+        最小值 minimum
+        当前进度百分比: value
+    设置:
+        最大值  setMIniximum(int)
+        最小值  setMaximum(int)
+        区间: setRange(int, int)
+	
+
+~~~
+
+
+
+---
+
+
+
+### 布局管理器
+
+~~~python
+QHLayoutBox()
+
+1、设置布局对象参数
+	1、设置布局管理器外边距
+    	hor.setContensMargins(self, nit, int, int, int)
+    2、设置管理器中组件之间的间距
+    	hor.setSpacing(self, int)
+2、调整布局方向：
+	布局从右向左
+	hor.setLayoutDirection(Qt.RightToLeft)
+  
+~~~
+
+
+
+##### 1、QLayout、
+
+~~~python
+基类
+
+1、添加控件
+    layout.addwidget(self.label_1)
+
+2、替换控件
+    layout.replaceWidget(self.label_1, self.label_2)
+    self.label_1.hide()
+
+~~~
+
+##### 2、QBoxLayout ，QHBoxLayout, QVBoxLayout盒子布局
+
+~~~python
+水平布局
+
+1、修改方向：
+	hor_setDirection(QBoxLayout.verBoxLayout)
+2、添加子控件：
+	在控件1的位置插入label标签
+	layout.insertWidget(1, label)
+3、移出标签
+	1、删除
+        layout.removewidget(label)
+        lable.setParent(None)    ------后续无用的情况下删除
+	2、隐藏
+    	label.hide()  ------- 再次会调用的情况下使用
+4、添加空白
+				-----------调整盒子内组件label_1, label_2的间距为100
+	layout.addwidget(label_1)
+	layout.addSpacing()
+    layout.addwidget(laebl_2)
+5、插入空白：
+	在1、2组件之间插入100的空白
+	insertSpaing(1, 100)
+6、伸缩因子：
+	eg:
+        在布局管理器中
+        	label_1占据3/1， laebl_2占据2/3
+    layout.addwidget(label_1, stretch=1 )
+   	layout.addwidget(label_2, stretch=2 )
+7、添加空白的伸缩因子
+	eg:
+        在label_1、label_2之间添加空白因子：
+        	总共分为 5 份， 空白占2份
+    layout.addwidget(label_1, stretch=1 )
+    layout.addStretch(2) 
+   	layout.addwidget(label_2, stretch=2 )
+ 8、给子控件，或子布局添加伸缩因子：
+	子布局
+	layout.setStrechFacto(label_1, 1)
+    子布局
+    layout.setStrechFactor(hor_box, 2)
+
+    
+~~~
+
+##### 2、QFormLayout  表单布局
+
+~~~python
+作用：
+	管理标签，输入框控件；
+    用于 提示信息， 输入文本，例如登录注册界面的输入提示框
+    结构为 两列多行：
+    	---  +++++
+        ---  +++++
+        ---  +++++
+        ---  +++++
+        ---  +++++
+    
+1、表单管理器的  添加行
+	additem()  ----------- 添加为上下结构  两行
+	addRow()  --------  添加为左右结构  一行
+    	addRow(Qwidget, Qwidget) ----   添加 两个组件  成为一行
+        addRow(Qwidget, QLayout) -----  添加组件 跟布局 成为一行
+        addRow(str, Qwidget) ---------  添加字符串，跟组件 成为一行
+        addRow(str, QLaytou) - ------   添加 字符串，跟布局，成为一行
+        addRow(self, Qwidget) --------  添加一个控件 为一行
+        addRow(self, QLayout)  -------  添加一个盒子布局 为一行
+	eg:
+        为每行添加 label提示信息， 和文本输入框 text_1， 组成登陆界面
+	layout = QFormLayout()
+    layout.addRow(label_1, text_1)
+    layout.addRow(label_2, text_2)
+    layout.addRow(label_3, text_3)
+
+2、表单管理器的  插入行：
+	int: 索引
+	addRow(int, Qwidget, Qwidget)
+    
+3、获取行结果:
+    
+    # 获取总行数：
+        count = layout.getRow()
+    # 获取组件位置：
+        tupel_result = layout.getWidgetPosition(self, label_1)
+        
+    # 获取 单行是一个布局管理器，
+    tuple_result = layout.getlayoutPosition(self, QLayout)
+    
+4、修改行
+	int:   指明索引
+    QFramLayout.ItemRole： 修改的角色是，行中第一个还是第二个
+        LabelRole   ---  第一个  角色
+        FieldRole   ---  第二个  角色
+
+    添加布局：
+        layout.setLaytou(self, int, QFramLayout.ItemRole, QLayout)
+	
+    添加控件:
+        layout.setWidget(self, int, QFramLayout.ItemRole, QWidget)
+~~~
+
+
+
+##### 3、网格布局 QGildLayout
+
+~~~python
+layout = QGildLayout()
+
+1、创建并添加：
+	layout.addWidget(label, row_int, col_int，align_row, align_col)
+    layout.addLayout(label, row_int, col_int，align_row, align_col)
+        row_int: 行索引
+        col_int:列索引
+        alignment: 跨度， --- 占据了几列
+            eg： label在第 1行， 第1列 占据了 2行， 3列
+                layout.addWidget(label, 1, 1， 2, 3)
+	eg:  第一行添加了 3 个标签
+        layout.addWidget(label_1, 0, 0)
+        layout.addWidget(label_2, 0, 1)
+        layout.addWidget(label_3, 0, 2)
+
+~~~
+
+
+
+##### 4、堆叠布局 QStackedLayout
+
+~~~python
+1、创建并添加:
+    
+    layout = QStackedLayout(self)
+    
+    layout.addwidget(laebl_1)
+    layout.addwidget(laebl_2)
+    layout.addwidget(laebl_3)
+    
+2、插入控件或布局
+	layout.insertwidget(index_int, label)
+
+3、页面切换:
+        # 获取子控件的个数
+        count = layout.count()
+    1、根据索引值来设置:
+        1、获取索引值
+        	index = layout.currentIndex()
+        2、设置
+            layout.setCurrnetIndex(index)
+           
+   2、根据当前组件来设置
+		1、获取组件
+    		widget = layout.currentWidget()
+       	 2、设置
+			setCurrentWidget(self, widget)
+4、信号：
+	currentChange(int_index) ----  当前组件发生变化 传输信号  
+    widgetRomoved(int_index)  ---- 当前组件被移除后  传输信号
+~~~
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
