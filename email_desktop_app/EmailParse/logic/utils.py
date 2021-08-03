@@ -9,7 +9,7 @@ from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QBrush, QColor
 from PyQt5.QtWidgets import QMessageBox, QTableWidgetItem
 
-from EmailParse.logic.log_util import Log
+from logic.log_util import Log
 
 logger_obj = Log('tools')
 logger = logger_obj.print_info()
@@ -121,14 +121,16 @@ class SalaryDatabase:
 			logger.error(str(e))
 		
 	def return_city_list(self):
+		city_list = []
 		try:
-			city_list = []
-			for item in  self.load_database():
-				for city in item.keys():
-					city_list.append(city)
-			return city_list
+			data_list = self.load_database()
+			for item in data_list:
+				city = item.get('name', '')
+				city_list.append(city)
 		except Exception as e:
 			logger.error(str(e))
+		finally:
+			return city_list
 
 def waring_info(selfs, message):
 	QMessageBox.warning(selfs, "错误提醒", message, QMessageBox.Yes)
@@ -245,7 +247,7 @@ def submit_info(selfs, selfs_employee_city, type):
 	
 def re_date_parse(content):
 	try:
-		pattern = re.compile(r'\d{4}/\d{1,2}/\d{1,2}|\d{4}\.\d{1,2}\.\d{1,2}|\d{4}年\d{1,2}月\d{1,2}日')  # 定义匹配模式
+		pattern = re.compile(r'\d{4}/\d{1,2}/\d{1,2}|\d{4}\.\d{1,2}\.\d{1,2}|\d{4}年\d{1,2}月\d{1,2}日|\d{4}-\d{1,2}-\d{1,2}')  # 定义匹配模式
 		pattern_data = re.findall(pattern, content)
 		list_form = ['%Y/%m/%d', '%Y.%m.%d', '%Y-%m-%d', '%Y年%m月%d日']
 		date = []
@@ -393,29 +395,38 @@ class SaveXlsx:
 			
 	def travel_write(self, travel_list, selfs):
 		try:
-			row_base = 2
-			number = 0
+			row_base, number, date_none = 2, 0, '0000-00-00'
 			for item in travel_list:
 				selfs.logger.info(f'出差_开始写入_{item}_信息')
+				person = item[6]
+				if not person:
+					continue
 				number += 1
 				row_base += 1
-				day = item[0]
-				start_date = item[1].split('/')
-				end_date = item[2].split('/')
+				if item[0]:
+					day = item[0][0]
+				else:
+					day = 0
+				if item[1]:
+					start_date = item[1][0].split('-')
+				else:
+					start_date = date_none
+				if item[2]:
+					end_date = item[2][0].split('-')
+				else:
+					end_date = date_none
 				start_city = item[3]
 				end_city = item[4]
 				project = item[5]
-				person = item[6]
-				salary_total = None
-				salary = None
+				transportation = item[7]
 				if day:
 					day = int(day)
-					for city in selfs.city_obj.return_city_list():
-						if city in end_city:
-							salary = selfs.city_obj.return_name_city_salary(city)
-						else:
-							salary = selfs.city_obj.return_name_city_salary('其他城市')
-						salary_total = day * int(salary)
+				salary = selfs.city_obj.return_name_city_salary('其他城市')
+				for city in selfs.city_obj.return_city_list():
+					if end_city and city in end_city:
+						salary = selfs.city_obj.return_name_city_salary(city)
+						break
+				salary_total = day * int(salary)
 				level, sal, sex = selfs.data_obj.return_name_level(person)
 				# 序号
 				self.travelsheet.write(row_base, 0, number, style=self.set_style(blod=True))
@@ -440,6 +451,9 @@ class SaveXlsx:
 
 				# 到达城市
 				self.travelsheet.write(row_base, 11, end_city, style=self.set_style(blod=True))
+				
+				# 交通工具
+				self.travelsheet.write(row_base, 13, transportation, style=self.set_style(blod=True))
 				# 人名
 				self.travelsheet.write(row_base, 1, person, style=self.set_style(blod=True))
 				# 性别
@@ -470,40 +484,40 @@ def get_week_day(date):
 
 def handle_travel_content(content):
 	try:
+		content = content.replace('：', ':')
 		day, start_date, end_date, start_city, end_city, person, \
-		project = None, None, None, None, None, None, None
-		data_list = []
+		project, transportation = None, None, None, None, None, None, None, None
 		con_list = content.split('\n')
 		con_list = [item for item in con_list if item.strip()]
-		new_list = []
-		flag = False
 		for item in con_list:
-			if '出差申请单' in item:
-				flag = True
-			if flag:
-				if item:
-					new_list.append(item)
-		count = 0
-		for item in new_list:
-			result = re_date_parse(item)
-			if len(result) >= 2:
-				item_list = [i for i in item.split(' ') if i]
-				start_date = item_list[0]
-				end_date = item_list[1]
-				start_city = item_list[2]
-				end_city = item_list[3]
-				day = item_list[4]
-				project = item_list[5]
-				if len(item_list) > 7:
-					project = item_list[6]
-			# if '出差天数' in item :
-			# 	day = re.findall('\d+', item)
-			if '申请人签字' in item:
-				person_list = [i for i in item.strip().split(' ') if i]
-				person = person_list[1].strip()
-			count += 1
-			data_list = [day, start_date, end_date, start_city, end_city, project, person]
+			item_list = item.split(":")
+			if len(item_list) > 1:
+				key = item_list[0].strip()
+				if key == '申请人':
+					person = item_list[1].replace('\r', '')
+				elif '出发日期' in key:
+					result = re_date_parse(item_list[1])
+					start_date = result
+				elif '回程日期' in key:
+					result = re_date_parse(item_list[1])
+					end_date = result
+				elif '出发地点' in key:
+					start_city = item_list[1].replace('\r', '')
+				elif '到达地点' in key:
+					end_city = item_list[1].replace('\r', '')
+				elif '出差时长' in key:
+					day = re.findall(r'\d+', item_list[1])
+				elif '出行工具' in key:
+					transportation = item_list[1].replace('\r', '')
+				elif '项目名称' in key:
+					project = item_list[1].replace('\r', '')
+				else:
+					continue
+		data_list = [day, start_date, end_date, start_city, end_city, project, person, transportation]
 		return data_list
 	except Exception as e:
 		logger.error(str(e))
-		raise
+		return []
+
+
+

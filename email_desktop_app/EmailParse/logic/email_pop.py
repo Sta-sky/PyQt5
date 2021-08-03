@@ -7,7 +7,7 @@ from email.parser import Parser
 from email.utils import parseaddr, parsedate_tz
 from PyQt5.QtWidgets import QMessageBox
 
-from EmailParse.logic.log_util import Log
+from logic.log_util import Log
 
 logger_obj = Log('email')
 logger = logger_obj.print_info()

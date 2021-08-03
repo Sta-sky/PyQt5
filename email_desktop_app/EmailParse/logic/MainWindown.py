@@ -12,7 +12,7 @@ from .email_pop import create_connect, get_email, handle_email
 from .log_util import Log
 from .utils import echo_info, SalaryDatabase, init_table, add_info, \
 	submit_info, get_week_day, SaveXlsx, handle_travel_content
-from EmailParse.ui.main_ui import Ui_MainWindow
+from ui.main_ui import Ui_MainWindow
 
 
 class EmailWindown(Ui_MainWindow, QMainWindow):
@@ -50,8 +50,8 @@ class EmailWindown(Ui_MainWindow, QMainWindow):
 		self.x_pos = None
 		self.y_pos = None
 		self.move_flag = False
-		# self.base_path = os.path.dirname(os.path.dirname(os.path.abspath(sys.executable)))
-		self.base_path = '.'
+		self.base_path = os.path.dirname(os.path.dirname(os.path.abspath(sys.executable)))
+		# self.base_path = '.'
 		self.database_path = self.base_path + '\\static\\database.npy'
 		self.city_path = self.base_path + '\\static\\city_database.npy'
 		self.data_obj = SalaryDatabase(self.database_path)
@@ -211,8 +211,9 @@ class EmailWindown(Ui_MainWindow, QMainWindow):
 			
 	def login_in(self):
 		self.login_ui.show()
-		self.login_ui.line_account.setText('liguiyang@zhunda.com')
-		self.login_ui.line_password.setText('zhunda2021')
+		self.login_flag = False
+		# self.login_ui.line_account.setText('dangyuanyang@zhunda.com')
+		# self.login_ui.line_password.setText('zhunda2021')
 		
 	def sub_page_btn(self):
 		self.login_ui.btn_login.clicked.connect(self.handle_login)
@@ -318,12 +319,12 @@ class EmailWindown(Ui_MainWindow, QMainWindow):
 		if self.new_add_emp_list:
 			echo_info(self, '请先完善提交当前修改')
 			return
-		currnt_item = self.table_employee.currentItem()
-		if currnt_item:
+		current_item = self.table_employee.currentItem()
+		if current_item:
 			if self.table_employee.currentColumn() != 0:
 				echo_info(self, '请选中要删除的 name 行，或者整行选中')
 				return
-			name = currnt_item.text()
+			name = current_item.text()
 			message = QMessageBox.question(self, '删除警告', f'确定要删除 {name} 信息？', QMessageBox.Yes | QMessageBox.No)
 			if message == 16384:
 				self.data_obj.delete_database(name)
@@ -351,13 +352,17 @@ class EmailWindown(Ui_MainWindow, QMainWindow):
 		self.email_obj = create_connect(account, password, self)
 		if self.email_obj:
 			self.logger.info(f'用户：{account}，登录成功')
-			echo_info(self, '登录成功')
+			if not self.login_flag:
+				echo_info(self, '登录成功')
+				self.login_flag = True
 			self.login_ui.close()
 			
 	def get_email_data(self):
 		try:
 			self.progress = MyProgress()
 			self.progress.open()
+			if self.login_flag:
+				self.login_ui.btn_login.animateClick(0)
 			if self.email_obj:
 				email_num, email_obj = get_email(self.email_obj)
 				self.logger.info(f'获取邮件数量为{email_num}')
@@ -442,9 +447,10 @@ class EmailWindown(Ui_MainWindow, QMainWindow):
 			for item_dic in self.travel_list:
 				result = handle_travel_content(item_dic['content'])
 				if not result:
+					self.logger.error(f'解析出差失败, 结果为： {result}')
 					echo_info(self, '解析出差失败')
 					return
-				self.cell_travel_all_list.append(list(result))
+				self.cell_travel_all_list.append(result)
 		except Exception as e:
 			self.logger.error(f'出差数据解析失败, 失败原因: {str(e)}')
 			

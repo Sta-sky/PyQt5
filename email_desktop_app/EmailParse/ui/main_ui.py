@@ -8,8 +8,8 @@ from PyQt5.QtWidgets import QAction, QWidget, QHBoxLayout, QSplitter, QGroupBox,
     QLabel, QLineEdit, QTextEdit, QTableWidget, QMenuBar, QMenu, QStatusBar, QFormLayout, \
     QAbstractItemView, QComboBox, QSpacerItem, QSizePolicy, QToolBar
 
-# base_path = os.path.dirname(os.path.dirname(os.path.abspath(sys.executable)))
-base_path = '.'
+base_path = os.path.dirname(os.path.dirname(os.path.abspath(sys.executable)))
+# base_path = '.'
 
 
 class Ui_MainWindow(object):

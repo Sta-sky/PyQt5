@@ -4,7 +4,7 @@ import sys
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QProgressDialog, QProgressBar, QLabel
 
-from ..ui.login_ui import LoginUI
+from ui.login_ui import LoginUI
 
 
 class LoginPage(LoginUI):
@@ -12,8 +12,8 @@ class LoginPage(LoginUI):
 		super(LoginPage, self).__init__()
 		self.setupUi(self)
 		self.setWindowTitle('账号登录')
-		# self.base_path = os.path.dirname(os.path.dirname(os.path.abspath(sys.executable)))
-		self.base_path = '.'
+		self.base_path = os.path.dirname(os.path.dirname(os.path.abspath(sys.executable)))
+		# self.base_path = '.'
 		self.qss_path = self.base_path + '\\static\\login.qss'
 		with open(self.qss_path) as fp:
 			data = fp.read()
