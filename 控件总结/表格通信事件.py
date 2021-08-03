@@ -29,10 +29,10 @@ class TableMain(QWidget):
         self.table_view.cellChanged.connect(self.change_data_handle)
 
         # 单机表格中内容触发  clicked、cellClicked、cellPressed作用基本一致,区别clicked不反回行列
-        self.table_view.cellClicked.connect(self.click_once_handle)
+        # self.table_view.cellClicked.connect(self.click_once_handle)
 
         # 双击表格发生触发
-        self.table_view.cellDoubleClicked.connect(self.click_double_handle)
+        # self.table_view.cellDoubleClicked.connect(self.click_double_handle)
 
         # 选中单元格发生变化时，返回之前的单元格跟当前选中的单元格
         # self.table_view.currentCellChanged.connect(self.current_pre_table_handle)
@@ -41,10 +41,10 @@ class TableMain(QWidget):
         # self.table_view.currentItemChanged.connect(self.item_obj_handle)
 
         # 双击返回单个表格对象  itemClicked
-        self.table_view.itemClicked.connect(self.double_click_handle)
+        # self.table_view.itemClicked.connect(self.double_click_handle)
 
         # 双击返回单个表格对象  itemDoubleClicked
-        self.table_view.itemDoubleClicked.connect(self.double_click_handle)
+        # self.table_view.itemDoubleClicked.connect(self.double_click_handle)
 
     def handle_col_signal(self, index):
         QMessageBox.information(self, '展示详情', f'这col是index： {index}', QMessageBox.Yes)

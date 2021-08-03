@@ -436,7 +436,10 @@ qtime.timeout.connect(test_time)
    自动重置、关闭:
     	pd.setAutoReset()
         pd.setAutoClose()
-    
+        
+   关闭取消按钮
+        self.progress.setCancelButtonText(None)
+
     
 3、设置
 	获取:

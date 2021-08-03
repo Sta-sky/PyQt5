@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1099</width>
+    <height>921</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QHBoxLayout" name="horizontalLayout_3">
+    <item>
+     <widget class="QGroupBox" name="box_btn_region">
+      <property name="title">
+       <string>按钮区</string>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_3">
+       <item>
+        <widget class="QPushButton" name="btn_mail_login">
+         <property name="text">
+          <string>邮箱登录</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btn_down_email">
+         <property name="text">
+          <string>邮件下载</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btn_export_excel">
+         <property name="text">
+          <string>导出表格</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QSplitter" name="splitter">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <widget class="QGroupBox" name="box_email_detail">
+       <property name="title">
+        <string>邮件详情</string>
+       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout_4">
+        <item>
+         <widget class="QTreeWidget" name="treeWidget">
+          <property name="maximumSize">
+           <size>
+            <width>150</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <column>
+           <property name="text">
+            <string>1</string>
+           </property>
+          </column>
+          <item>
+           <property name="text">
+            <string>出差</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>加班</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>日报</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item>
+         <layout class="QFormLayout" name="formLayout_email">
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_subject">
+            <property name="text">
+             <string>邮件主题 </string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QLineEdit" name="line_subject_mail"/>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_send_mail">
+            <property name="text">
+             <string>发件人</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QLineEdit" name="line_send_mail"/>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_name_email">
+            <property name="text">
+             <string>姓名</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QLineEdit" name="line_name"/>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="label_day_num">
+            <property name="text">
+             <string>工时周期</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1">
+           <widget class="QLineEdit" name="line_day_num"/>
+          </item>
+          <item row="4" column="0">
+           <widget class="QLabel" name="label_project_code">
+            <property name="text">
+             <string>项目编号</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="1">
+           <widget class="QLineEdit" name="line_project_code"/>
+          </item>
+          <item row="5" column="0">
+           <widget class="QLabel" name="label_project_name">
+            <property name="text">
+             <string>项目名称</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="1">
+           <widget class="QLineEdit" name="line_project_name"/>
+          </item>
+          <item row="6" column="0">
+           <widget class="QLabel" name="label_project_date">
+            <property name="text">
+             <string>日期</string>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="1">
+           <widget class="QLineEdit" name="line_date"/>
+          </item>
+          <item row="7" column="0">
+           <widget class="QLabel" name="label_content_email">
+            <property name="text">
+             <string>邮件内容</string>
+            </property>
+           </widget>
+          </item>
+          <item row="7" column="1">
+           <widget class="QTextEdit" name="text_content_mail"/>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QGroupBox" name="groupBox">
+       <property name="title">
+        <string>项目管理</string>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_4">
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout">
+          <item>
+           <widget class="QLabel" name="laeb_employee">
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>30</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>项目成员薪资对照表</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout">
+            <item>
+             <widget class="QPushButton" name="add_employee">
+              <property name="text">
+               <string>新增成员</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="del_employee">
+              <property name="text">
+               <string>删除成员</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <widget class="QTableWidget" name="tabl_employee"/>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_2">
+          <item>
+           <widget class="QLabel" name="label_city">
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>30</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>出差城市补贴对照</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_2">
+            <item>
+             <widget class="QPushButton" name="add_city">
+              <property name="text">
+               <string>新增城市</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="del_city">
+              <property name="text">
+               <string>删除城市</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <widget class="QTableWidget" name="tableWidget_2"/>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar_obj">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1099</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu_file_2">
+    <property name="title">
+     <string>文件</string>
+    </property>
+    <addaction name="login"/>
+    <addaction name="outlogin"/>
+   </widget>
+   <addaction name="menu_file_2"/>
+  </widget>
+  <widget class="QStatusBar" name="status_bar"/>
+  <action name="menu_file">
+   <property name="text">
+    <string>文件</string>
+   </property>
+   <property name="toolTip">
+    <string>文件</string>
+   </property>
+  </action>
+  <action name="login">
+   <property name="text">
+    <string>邮箱登录</string>
+   </property>
+   <property name="toolTip">
+    <string>邮箱登录</string>
+   </property>
+  </action>
+  <action name="outlogin">
+   <property name="text">
+    <string>退出</string>
+   </property>
+   <property name="toolTip">
+    <string>退出</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+C</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

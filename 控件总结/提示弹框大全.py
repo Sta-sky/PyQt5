@@ -184,6 +184,7 @@ class MyWindow(QWidget):
                                                 "文件另存为",
                                                 "C:/",
                                                 "All Files (*);;Text Files (*.txt)")
+
         self.echo(file_)
 
     # =====================================================================

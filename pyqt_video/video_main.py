@@ -9,8 +9,8 @@ from PyQt5.QtGui import QIcon, QKeySequence
 from PyQt5.QtWidgets import QApplication, QMainWindow, QFileDialog, QTreeWidgetItem, QShortcut, qApp
 from PyQt5.QtMultimedia import *
 
-from utils import echo
-from video_ui import Ui_MainWindow
+from .utils import echo
+from .video_ui import Ui_MainWindow
 
 
 class Car_window(QMainWindow, Ui_MainWindow):
@@ -232,6 +232,9 @@ class Car_window(QMainWindow, Ui_MainWindow):
                 self.widget.setFullScreen(1)
                 self.videoFullScreen = True
 
+    def closeEvent(self, *args, **kwargs):
+        
+        self.close()
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)

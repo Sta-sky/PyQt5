@@ -1,0 +1,100 @@
+
+QTableWidget {
+    font-size: 18px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background-color: rgb(175.225, 235)
+
+}
+QGroupBox {
+    font-size: 22px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: white;
+    font-weight: 900px
+}
+
+.QPushButton {
+    font: 18px;
+    background-color: rgb(139, 0, 0);
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    border-color: rgb(125, 125, 125);
+    color: white;
+    border-radius: 10px;
+    padding:12;
+}
+
+.QLineEdit {
+    font: 18px;
+    background-color: rgb(211, 211, 211);
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: black;
+    border-radius: 10px;
+    padding:12;
+}
+
+.QTextEdit {
+    font: 18px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background-color: rgb(211, 211, 211);
+    border-radius: 10px;
+    padding:12;
+}
+
+
+QLabel#my_label {
+    color: white;
+    font: 18px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+QLabel#label_employee_city {
+    color: rgb(255, 255, 0);
+    font: 18px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight:700;
+}
+
+
+.QTreeWidget {
+    font: 18px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background-color: rgb(211, 211, 211);
+    border-radius: 10px;
+    padding:12;
+}
+
+.QMenu {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background-color: rgb(135, 206, 235);
+    font-size: 18px;
+
+}
+
+QMenuBar {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background-color: rgb(119, 136, 153);
+    color: black;
+    font-size: 22px;
+    font-weight:500;
+}
+
+QToolBar {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background-color: rgb(255, 255, 255);
+    color: black;
+    font-size: 25px;
+    font-weight:500;
+}
+
+QComboBox {
+    font: 18px;
+    background-color: rgb(180, 180, 180);
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    border-color: rgb(125, 125, 125);
+    color: black;
+    border-radius: 7px;
+    padding:5;
+}
+
+
+
+
