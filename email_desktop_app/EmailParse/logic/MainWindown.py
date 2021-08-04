@@ -4,8 +4,9 @@ import os
 import sys
 
 from PyQt5.QtCore import Qt
+from PyQt5 import QtCore, QtGui
 from PyQt5.QtGui import QPalette, QBrush, QPixmap, QKeySequence, QIcon
-from PyQt5.QtWidgets import QMainWindow, QTreeWidgetItem, QMessageBox, QFileDialog, QProgressBar, QProgressDialog
+from PyQt5.QtWidgets import QMainWindow, QTreeWidgetItem, QMessageBox, QFileDialog
 
 from .SubPage import LoginPage, MyProgress
 from .email_pop import create_connect, get_email, handle_email
@@ -25,7 +26,7 @@ class EmailWindown(Ui_MainWindow, QMainWindow):
 		self.setContentsMargins(0, 0, 0, 0)
 		self.init_ver() # 变量初始化
 		self.main_style() # 主页样式加载
-		self.primery_page_btn() # 主页面 按钮 事件
+		self.primary_page_btn() # 主页面 按钮 事件
 		self.sub_page_btn() # 子页面按钮 事件
 		self.init_city_data() # 初始化城市界面信息
 		self.init_comb_info() # 初始化时间过滤组件
@@ -34,11 +35,13 @@ class EmailWindown(Ui_MainWindow, QMainWindow):
 	def main_style(self):
 		self.resize(1700, 850)
 		self.setWindowTitle('邮件解析应用')
+		ico_path = self.base_path + '\\static\\image\\ico.png'
+		print(ico_path)
+		self.setWindowIcon(QIcon(ico_path))
 		self.logger.info(self.base_path + '\\static\\style.qss')
 		with open(self.base_path + '\\static\\style.qss') as fp:
 			data = fp.read()
 			self.setStyleSheet(data)
-		self.setWindowIcon(QIcon(self.base_path + '\\static\\image\\win.ico'))
 		palette = QPalette()
 		palette.setBrush(QPalette.Background, QBrush(QPixmap(self.base_path + "\\static\\image\\background.png")))
 		self.setPalette(palette)
@@ -47,11 +50,12 @@ class EmailWindown(Ui_MainWindow, QMainWindow):
 		
 	def init_ver(self):
 		self.email_data = None
+		self.login_flag = False
 		self.x_pos = None
 		self.y_pos = None
 		self.move_flag = False
-		self.base_path = os.path.dirname(os.path.dirname(os.path.abspath(sys.executable)))
-		# self.base_path = '.'
+		# self.base_path = os.path.dirname(os.path.dirname(os.path.abspath(sys.executable)))
+		self.base_path = '.'
 		self.database_path = self.base_path + '\\static\\database.npy'
 		self.city_path = self.base_path + '\\static\\city_database.npy'
 		self.data_obj = SalaryDatabase(self.database_path)
@@ -60,10 +64,9 @@ class EmailWindown(Ui_MainWindow, QMainWindow):
 		self.new_add_emp_list = []
 		self.new_add_city_list = []
 		self.data_list = []
-		self.data_fields = ['日期', '星期', '岗位', '岗位单价', '工时(人/天)', '项目编号', '项目名称', '姓名', '加班备注']
+		self.data_fields = ['日期', '星期', '岗位', '岗位单价', '工时(人/天)', '项目编号', '项目名称', '姓名']
 		self.data_set = set()
 		self.email_data = {}
-
 	
 	def init_employee_data(self):
 		""" 初始化成员数据 """
@@ -71,7 +74,6 @@ class EmailWindown(Ui_MainWindow, QMainWindow):
 		data_ = self.data_obj.load_database()
 		init_table(self.table_employee, type='data', data=data_)
 		self.table_employee.blockSignals(False)
-
 
 	def init_city_data(self):
 		""" 初始化城市数据 """
@@ -96,7 +98,7 @@ class EmailWindown(Ui_MainWindow, QMainWindow):
 			year = current_year - num
 			self.com_year.addItem(str(year))
 		
-	def primery_page_btn(self):
+	def primary_page_btn(self):
 		self.outlogin.setShortcut(QKeySequence('Ctrl+r'))
 		self.btn_export_excel.triggered.connect(self.export_excel)      # 导出表格
 		self.outlogin.triggered.connect(lambda : self.close())          # 关闭窗口
@@ -131,17 +133,17 @@ class EmailWindown(Ui_MainWindow, QMainWindow):
 					self.extract_name_to_set()
 					self.logger.info(f'日报--日报费用统计人员为：{self.data_set}')
 					failed_list = []
+					self.every_name_list = []
+					print(self.data_list)
 					for name_item in self.data_set:
 						if not self.generate_list(name_item):
-							self.logger.error(f'日报--生成_{name_item}_日报sheet页失败')
 							failed_list.append(name_item)
 							continue
-						self.logger.info(f'日报--开始写入_{name_item}_sheet页面信息')
-						excel_obj.add_sheet(f'工时费用统计({name_item})')
-						excel_obj.generate_excel_data(self.every_name_list, self.data_fields)
-						self.logger.info(f'日报--{name_item}_sheet页面信息写入完成')
-					self.logger.info(f'日报--日报写入失败的人员{failed_list}')
-					self.logger.info(f'所有日报--sheet页面信息写入完成')
+					self.generate_date_dict()
+					self.logger.info(f'日报--开始写入_sheet页面信息')
+					excel_obj.add_sheet(f'工时费用统计')
+					excel_obj.generate_excel_data(self.data_dic, self.data_fields)
+					self.logger.info(f'日报-sheet页面信息写入完成，写入失败的人员{failed_list}')
 					# 生成旅行sheet页数据
 					self.logger.info('出差--开始生成_出差_sheet页')
 					self.travel_data_handle()
@@ -161,19 +163,32 @@ class EmailWindown(Ui_MainWindow, QMainWindow):
 			self.logger.error(str(e))
 			return
 	
+	def generate_date_dict(self):
+		keys_set = set()
+		self.data_dic = {}
+		if self.every_name_list:
+			for item in self.every_name_list:
+				keys_set.add(item[0])
+		for key in keys_set:
+			self.data_dic[key] = []
+		for key, val in self.data_dic.items():
+			for item in self.every_name_list:
+				if key == item[0]:
+					val.append(item)
+					self.data_dic[key] = val
+		
 	def parse_content(self, item_info):
 		""" 解析 内容 生成表格 需要的列表格式"""
 		try:
 			content = item_info['content']
-			word_list = [item.strip() for item in content.split(' ') if item]
+			word_list = [item.strip() for item in content.strip().split('\n') if item]
 			word_list = [item for item in word_list if item]
-			if not word_list:
-				return
 			info_dic = {}
-			length_list = len(word_list)
-			for index, val in enumerate(word_list):
-				if index % 2 == 0 and index < length_list - 1:
-					info_dic[word_list[index]] = word_list[index + 1]
+			for val in word_list:
+				key_list = [item for item in val.split(' ') if item]
+				if key_list:
+					value = ''.join(key_list[1:])
+					info_dic[key_list[0]] = value
 			self.data_list.append(info_dic)
 		except Exception as e:
 			self.logger.error(f'解析出差内容成为列表失败, 失败原因：{str(e)}')
@@ -188,20 +203,16 @@ class EmailWindown(Ui_MainWindow, QMainWindow):
 			
 	def generate_list(self, name_item):
 		try:
-			self.every_name_list = []
 			for item in self.data_list:
 				name = item.get('申请人', None)
 				if name == name_item:
 					date = item.get('日期', None)
-					weekday = None
-					if date:
-						date_list = [int(i) for i in date.split('/')]
-						weekday = get_week_day(datetime.date(date_list[0], date_list[1], date_list[2]))
 					level, salary, sex = self.data_obj.return_name_level(name_item)
 					if not level or not salary:
 						echo_info(self, f'请添加 {name_item} 的 成员数据， 添加后再次导出')
+						self.logger.warning(f'{name_item} 的成员数据为空，请添加后再导出')
 						return False
-					_list = [date, weekday, level, salary, item.get('工时周期', None),
+					_list = [date, level, salary, item.get('工时周期', None),
 					         item.get('项目编号', None), item.get('项目名称', None), item.get('申请人', None)]
 					self.every_name_list.append(_list)
 			return True
@@ -212,8 +223,8 @@ class EmailWindown(Ui_MainWindow, QMainWindow):
 	def login_in(self):
 		self.login_ui.show()
 		self.login_flag = False
-		# self.login_ui.line_account.setText('dangyuanyang@zhunda.com')
-		# self.login_ui.line_password.setText('zhunda2021')
+		self.login_ui.line_account.setText('dangyuanyang@zhunda.com')
+		self.login_ui.line_password.setText('zhunda2021')
 		
 	def sub_page_btn(self):
 		self.login_ui.btn_login.clicked.connect(self.handle_login)
@@ -490,8 +501,3 @@ class EmailWindown(Ui_MainWindow, QMainWindow):
 				self.move(pos_x, pos_y)
 		except Exception as e:
 			self.logger.error(str(e))
-			pass
-		
-	def resizeEvent(self, event):
-		pass
-	

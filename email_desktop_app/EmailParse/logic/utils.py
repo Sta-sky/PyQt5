@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
 import re
-from datetime import datetime
+import datetime
 
 import numpy as np
 import xlwt
@@ -142,7 +142,7 @@ def echo_info(selfs, message):
 
 def date_format(item, format_item):
 	try:
-		date = datetime.strptime(item, format_item)
+		date = datetime.datetime.strptime(item, format_item)
 		return date
 	except Exception as e:
 		return False
@@ -284,19 +284,15 @@ class SaveXlsx:
 		:return:
 		"""
 		try:
-			self.sheet.write_merge(0, 1, 0, 8, '四川准达信息技术股份有限公司 (工时确认)',
+			self.sheet.write_merge(0, 0, 0, len(fields) - 1, '四川准达信息技术股份有限公司 (工时确认)',
 			                       self.set_style(height=400, bg_color=55))
-			pattern_top = xlwt.Pattern()
-			pattern_top.pattern = xlwt.Pattern.SOLID_PATTERN
-			pattern_top.pattern_fore_colour = 5
+			self.sheet.write_merge(1, 1, 0, len(fields) - 1)
 			for num in range(len(fields)):
 				self.sheet.write(2, num, fields[num], self.set_style(height=300, bg_color=40))
-			for row in range(3, len(data) + 3):
-				for col in range(len(fields) - 1):
-					lists_res = data[row - 3][col]
-					if lists_res in ['星期六', '星期天']:
-						self.sheet.write(row, len(fields) - 1, '加班', self.set_style(height=250, bg_color=5))
-					self.sheet.write(row, col, lists_res, self.set_style(height=250))
+			index = 3
+			for date, val_list in data.items():
+				self.write_execl(date, val_list, index, fields)
+				index += len(val_list)
 			for col in range(len(fields)):
 				self.set_cell_width(col, 256 * 20)
 			self.set_cele_height(0, 20 * 40)
@@ -305,6 +301,21 @@ class SaveXlsx:
 				self.set_cele_height(index, 20 * 30)
 		except Exception as e:
 			logger.error(str(e))
+	
+	def merge_cell(self):
+		pass
+	
+	def write_execl(self, date, val_list, start_index, fields):
+		length = len(val_list) - 1
+		end_index = start_index + length
+		self.sheet.write_merge(start_index, end_index, 0, 0, date, self.set_style(height=250))
+		date_list = [int(i) for i in date.split('/')]
+		weekday = get_week_day(datetime.date(date_list[0], date_list[1], date_list[2]))
+		self.sheet.write_merge(start_index, end_index, 1, 1, weekday, self.set_style(height=250))
+		for row in range(len(val_list)):
+			for col in range(1, len(fields) - 1):
+				lists_res = val_list[row][col]
+				self.sheet.write(start_index + row, col + 1, lists_res, self.set_style(height=250))
 	
 	def set_cell_width(self, col, width):
 		""" 设置表格宽  width = 256 * 20    256为衡量单位，20表示20个字符宽度 """

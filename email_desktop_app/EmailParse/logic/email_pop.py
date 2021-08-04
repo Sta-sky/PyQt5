@@ -87,7 +87,6 @@ def handle_email(email_total_num, email_obj, year_month, progress):
 						if 'GB2312' in i:
 							coding_key = 'GB2312'
 				c += 1
-			
 			content = get_body(msg_content, coding_key)
 			email_dic["subject"] = subject
 			email_dic["from_user"] = from_user
@@ -100,6 +99,7 @@ def handle_email(email_total_num, email_obj, year_month, progress):
 			"email_count": email_total_num,
 			"email_info": email_list
 		}
+		
 		email_obj.close()
 		return email_info_dic
 	except Exception as e:

@@ -6,8 +6,8 @@ import os
 import sys
 
 LOG_NAME = ['eBackup', 'CSBS', 'Openstack', 'SDK', 'ODK', 'ssh']
-BASE_PATH = os.path.dirname(os.path.dirname(os.path.abspath(sys.executable))) + '\\static\log\\'
-# BASE_PATH= os.path.realpath('./static/log/')
+# BASE_PATH = os.path.dirname(os.path.dirname(os.path.abspath(sys.executable))) + '\\static\log\\'
+BASE_PATH= os.path.realpath('./static/log/')
 FormatLog = ("%(asctime)s - %(filename)s - line:%(lineno)d - %(funcName)s - %("
             "levelname)s - %(message)s")
 
