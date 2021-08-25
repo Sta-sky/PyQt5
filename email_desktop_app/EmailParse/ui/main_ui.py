@@ -4,12 +4,14 @@ import sys
 
 from PyQt5.QtCore import Qt, QSize, QRect, QMetaObject, QCoreApplication
 from PyQt5.QtGui import QIcon
-from PyQt5.QtWidgets import QAction, QWidget, QHBoxLayout, QSplitter, QGroupBox, QPushButton, QVBoxLayout, QTreeWidget, \
+from PyQt5.QtWidgets import QAction, QWidget, QHBoxLayout, QGroupBox, QPushButton, QVBoxLayout, QTreeWidget, \
     QLabel, QLineEdit, QTextEdit, QTableWidget, QMenuBar, QMenu, QStatusBar, QFormLayout, \
-    QAbstractItemView, QComboBox, QSpacerItem, QSizePolicy, QToolBar
+    QAbstractItemView, QComboBox, QToolBar
 
 # base_path = os.path.dirname(os.path.dirname(os.path.abspath(sys.executable)))
 base_path = '.'
+
+
 
 
 class Ui_MainWindow(object):

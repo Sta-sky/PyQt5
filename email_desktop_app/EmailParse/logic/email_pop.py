@@ -28,12 +28,12 @@ month_dic = {
 }
 
 
-def create_connect(username, password, selfs, host: str = 'zhunda.com'):
+def create_connect(username, password, selfs, host: str = 'pop.sina.com'):
 	try:
 		email = poplib.POP3(host)  # 创建一个pop3对象，这个时候实际上已经连接上服务器了
 		email.set_debuglevel(1)  # 设置调试模式，可以看到与服务器的交互信息
 		email.user(username)  # 向服务器发送用户名 密码
-		email.pass_(password)
+		email.pass_('4285872ab6190fda')
 		return email
 	except Exception as e:
 		if issubclass(poplib.error_proto, type(e)):
@@ -60,14 +60,17 @@ def handle_email(email_total_num, email_obj, year_month, progress):
 			progress.setValue(curr_val)
 			email_dic = {}
 			email_count += 1
-			resp, mailContent, bytes_size = email_obj.retr(i + 1)  # 信件id是从1开始的。
-			if '+OK' not in resp.decode().split(' '):
-				logger.warning('当前信 状态异常 跳过')
+			try:
+				resp, mailContent, bytes_size = email_obj.retr(i + 1)  # 信件id是从1开始的。
+			except Exception as e:
 				continue
-			msg_content = Parser().parsestr(b'\r\n'.join(mailContent).decode('utf-8'))
+			msg_content = Parser().parsestr(b'\r\n'.join(mailContent).decode('utf-8', errors='ignore'))
 			send_date = parsedate_tz(msg_content.get('Date'))
+			print(send_date)
 			send_date = format_date(send_date)
+			print(send_date)
 			if year_month not in send_date:
+				print('///////')
 				continue
 			subject = decode_str(msg_content.get('Subject'))
 			from_user = parseaddr(msg_content.get('From'))[1]
@@ -88,6 +91,7 @@ def handle_email(email_total_num, email_obj, year_month, progress):
 							coding_key = 'GB2312'
 				c += 1
 			content = get_body(msg_content, coding_key)
+			print(content)
 			email_dic["subject"] = subject
 			email_dic["from_user"] = from_user
 			email_dic["to_user"] = to_user
@@ -99,7 +103,6 @@ def handle_email(email_total_num, email_obj, year_month, progress):
 			"email_count": email_total_num,
 			"email_info": email_list
 		}
-		
 		email_obj.close()
 		return email_info_dic
 	except Exception as e:

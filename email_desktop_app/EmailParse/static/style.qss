@@ -13,7 +13,7 @@ QGroupBox {
 }
 
 .QPushButton {
-    font: 18px;
+    font-size: 18px;
     background-color: rgb(139, 0, 0);
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     border-color: rgb(125, 125, 125);
@@ -72,7 +72,7 @@ QLabel#label_employee_city {
 QMenuBar {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     background-color: rgb(119, 136, 153);
-    color: black;
+    color: white;
     font-size: 22px;
     font-weight:500;
 }

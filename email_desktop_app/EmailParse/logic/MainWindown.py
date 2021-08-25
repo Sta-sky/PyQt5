@@ -4,7 +4,6 @@ import os
 import sys
 
 from PyQt5.QtCore import Qt
-from PyQt5 import QtCore, QtGui
 from PyQt5.QtGui import QPalette, QBrush, QPixmap, QKeySequence, QIcon
 from PyQt5.QtWidgets import QMainWindow, QTreeWidgetItem, QMessageBox, QFileDialog
 
@@ -36,7 +35,6 @@ class EmailWindown(Ui_MainWindow, QMainWindow):
 		self.resize(1700, 850)
 		self.setWindowTitle('邮件解析应用')
 		ico_path = self.base_path + '\\static\\image\\ico.png'
-		print(ico_path)
 		self.setWindowIcon(QIcon(ico_path))
 		self.logger.info(self.base_path + '\\static\\style.qss')
 		with open(self.base_path + '\\static\\style.qss') as fp:
@@ -187,7 +185,7 @@ class EmailWindown(Ui_MainWindow, QMainWindow):
 			for val in word_list:
 				key_list = [item for item in val.split(' ') if item]
 				if key_list:
-					value = ''.join(key_list[1:])
+					value = ' '.join(key_list[1:])
 					info_dic[key_list[0]] = value
 			self.data_list.append(info_dic)
 		except Exception as e:
@@ -223,8 +221,8 @@ class EmailWindown(Ui_MainWindow, QMainWindow):
 	def login_in(self):
 		self.login_ui.show()
 		self.login_flag = False
-		self.login_ui.line_account.setText('dangyuanyang@zhunda.com')
-		self.login_ui.line_password.setText('zhunda2021')
+		self.login_ui.line_account.setText('holddang@sina.com')
+		self.login_ui.line_password.setText('10793300d')
 		
 	def sub_page_btn(self):
 		self.login_ui.btn_login.clicked.connect(self.handle_login)
@@ -395,7 +393,6 @@ class EmailWindown(Ui_MainWindow, QMainWindow):
 					self.parse_email(self.email_data)
 					self.logger.info('邮件树解析完成')
 					self.logger.info('邮件下载完成')
-					
 				else:
 					echo_info(self, '邮件总数量为 0')
 			else:
