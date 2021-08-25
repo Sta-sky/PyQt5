@@ -4,13 +4,13 @@ import os
 import sys
 
 from PyQt5 import QtGui
-from PyQt5.QtCore import QUrl
-from PyQt5.QtGui import QIcon, QKeySequence
-from PyQt5.QtWidgets import QApplication, QMainWindow, QFileDialog, QTreeWidgetItem, QShortcut, qApp
-from PyQt5.QtMultimedia import *
+from PyQt5.QtCore import QUrl, QSize, Qt, QRectF
+from PyQt5.QtGui import QIcon, QKeySequence, QPainterPath, QColor, QPainter, QBrush
+from PyQt5.QtMultimedia import QMediaPlayer, QMediaContent
+from PyQt5.QtWidgets import QApplication, QMainWindow, QFileDialog, QTreeWidgetItem, QShortcut, qApp, QMessageBox
 
-from .utils import echo
-from .video_ui import Ui_MainWindow
+from utils import echo
+from video_ui import Ui_MainWindow
 
 
 class Car_window(QMainWindow, Ui_MainWindow):
@@ -19,16 +19,31 @@ class Car_window(QMainWindow, Ui_MainWindow):
         self.setupUi(self)
         self.resize(1700, 900)
         self.base_path_list = []
-        self.setWindowIcon(QIcon('./video.png'))
+        self.move_flag = False
+        self.start_x = 0
+        self.start_y = 0
+        # self.static_base_path = os.path.dirname(os.path.dirname(os.path.abspath(sys.executable)))
+        self.static_base_path = '.'
+        ico_path = self.static_base_path + '\\static\\images\\video.png'
+        self.setWindowIcon(QIcon(ico_path))
+        qss_path = self.static_base_path + '\\static\\qss\\style.qss'
+        with open(qss_path, 'r') as fp:
+            self.setStyleSheet(fp.read())
+        self.setAutoFillBackground(False)
+        self.border_width = 8
+        self.setWindowFlags(Qt.FramelessWindowHint | Qt.Window | Qt.Tool)
+        self.setAttribute(Qt.WA_TranslucentBackground, True)
         # 设置播放暂停的标志
         self.FLAG_PLAY = False
-        self.videoFullScreen = False  # 判断当前widget是否全屏
-        # 视频操作  		# 定义player
+        
+        # 视频操作  # 定义player
         self.player = QMediaPlayer()
-        self.player.setVideoOutput(self.widget)  # 视频播放输出的widget，就是上面定义的
+        self.player.setVideoOutput(self.video_widget)  # 视频播放输出的widget，就是上面定义的
         self.player.positionChanged.connect(self.changeSlide)  # 位置改变触发，设置进度
-        self.player.durationChanged.connect(self.getprocess)         # 时间改变后触发设置时间进度
+        self.player.durationChanged.connect(self.getprocess)   # 时间改变后触发设置时间进度
+        self.btn_video_list.clicked.connect(self.video_list_show)
         self.sld_video.sliderMoved.connect(self.updatePosition)
+        self.voice_Slider.sliderMoved.connect(self.voice_update)
         self.video_list = qApp.arguments()
         if len(self.video_list) > 1:
             self.curr_video = self.video_list[1]
@@ -36,48 +51,83 @@ class Car_window(QMainWindow, Ui_MainWindow):
                 self.curr_play_video()
             else:
                 echo(self, '路径不存在')
+        
+        # 快捷键控制进度
+        QShortcut(QKeySequence('Left'), self.video_widget, self.key_video_back)
+        QShortcut(QKeySequence('Right'), self.video_widget, self.key_video_forward)
+        QShortcut(QKeySequence('Up'), self.video_widget, self.voice_big)
+        QShortcut(QKeySequence('Down'), self.video_widget, self.voice_small)
+        QShortcut(QKeySequence('Space'), self.video_widget, self.playVideo)
+        QShortcut(QKeySequence("Ctrl+R"), self.video_widget, self.key_close)
+        QShortcut(QKeySequence("Ctrl+D"), self.video_widget, self.key_clear_video)
+        QShortcut(QKeySequence("Ctrl+G"), self.video_widget, self.file_video)
+        QShortcut(QKeySequence("Ctrl+F"), self.video_widget, self.files_video)
+        QShortcut(QKeySequence("Ctrl+W"), self.video_widget, self.show_list)
+        QShortcut(QKeySequence("Esc"), self.video_widget, self.handle_esc)
+        
         # 这里进行按钮的绑定
         self.btn_choose.clicked.connect(self.openVideoFile)
         self.btn_play.clicked.connect(self.playVideo)
         self.btn_stop.clicked.connect(self.stopVideo)
-        self.widget.doubleClickedItem.connect(self.videoDoubleClicked)
+        self.btn_close.clicked.connect(self.close)
+        self.video_widget.doubleClickedItem.connect(self.videoDoubleClicked)
+        
         # 控制音量
-        try:
-            self.widget.wheelItem.connect(self.handle_voice)
-        except Exception as e:
-            echo(self, str(e))
+        self.player.setVolume(50)
+        self.video_widget.wheelItem.connect(self.handle_voice)
         self.btn_choose_videos.clicked.connect(self.choose_videos_tree)
         self.treeWidget.clicked.connect(self.handle_click_video)
         self.quick_forward.clicked.connect(self.video_forward)
         self.quick_back.clicked.connect(self.video_back)
-        
-        # 快捷键控制进度
-        self.quick_left = QShortcut(QKeySequence('Left'), self)
-        self.quick_right = QShortcut(QKeySequence('Right'), self)
-        self.quick_up = QShortcut(QKeySequence('Up'), self)
-        self.quick_down = QShortcut(QKeySequence('Down'), self)
-        self.quick_space = QShortcut(QKeySequence('Space'), self)
-        
-        self.quick_left.activated.connect(self.video_back)
-        self.quick_right.activated.connect(self.video_forward)
-        self.quick_up.activated.connect(self.voice_big)
-        self.quick_down.activated.connect(self.voice_small)
-        self.quick_space.activated.connect(self.playVideo)
-        self.player.setVolume(50)
+
+    def paintEvent(self, event):
+        # 阴影
+        path = QPainterPath()
+        path.setFillRule(Qt.WindingFill)
+        pat = QPainter(self)
+        pat.setRenderHint(pat.Antialiasing)
+        pat.fillPath(path, QBrush(Qt.white))
+        color = QColor(192, 192, 192, 50)
+        for i in range(10):
+            i_path = QPainterPath()
+            i_path.setFillRule(Qt.WindingFill)
+            ref = QRectF(10 - i, 10 - i, self.width() - (10 - i) * 2, self.height() - (10 - i) * 2)
+            i_path.addRoundedRect(ref, self.border_width, self.border_width)
+            color.setAlpha(150 - i ** 0.5 * 50)
+            pat.setPen(color)
+            pat.drawPath(i_path)
+        # 圆角
+        pat2 = QPainter(self)
+        pat2.setRenderHint(pat2.Antialiasing)  # 抗锯齿
+        pat2.setBrush(Qt.white)
+        pat2.setPen(Qt.transparent)
+        rect = self.rect()
+        rect.setLeft(9)
+        rect.setTop(9)
+        rect.setWidth(rect.width() - 9) # 控制水平偏移量
+        rect.setHeight(rect.height() - 9) # 控制竖直偏移量
+        pat2.drawRoundedRect(rect, 10, 10) # 控制圆角锐度
 
     def curr_play_video(self):
         try:
             video_name = os.path.split(self.curr_video)[1]
             self.video_name.setText(f'当前播放视频为： {video_name}')
-            print(self.curr_video)
             self.player.setMedia(QMediaContent(QUrl.fromLocalFile(self.curr_video)))  # 选取视频文件
             self.player.play()  # 播放视频
             self.FLAG_PLAY = True
+            self.btn_play.setIcon(QIcon(self.static_base_path + '\\static\\images\\player.png'))
         except Exception as e:
             return
+    
+    def voice_update(self, v):
+        if not v:
+            return
+        self.player.setVolume(v)
+        self.voice_video.setText(f'{v}%')
 
     def handle_voice(self, wheel_size):
         try:
+            self.voice_Slider.show()
             voice_size = self.player.volume()
             wheel_size = int(wheel_size)
             if wheel_size < 0:
@@ -85,37 +135,51 @@ class Car_window(QMainWindow, Ui_MainWindow):
                     return
                 else:
                     voice_size -= 5
-                    self.player.setVolume(voice_size)
             if wheel_size > 0:
                 if voice_size >= 100:
                     return
                 else:
                     voice_size += 5
-                    self.player.setVolume(voice_size)
+            self.player.setVolume(voice_size)
             voice = self.player.volume()
-            self.voice_video.setText(f' | {voice}%')
+            self.voice_Slider.setValue(voice)
+            self.voice_video.setText(f'{voice}%')
         except Exception as e:
             echo(self, str(e))
+            return
             
     def video_forward(self):
         forward_position = self.player.position() + 5000
         if forward_position == 5000:
-            echo(self, '请添加文件')
             return
         if forward_position > self.sld_video.maximum():
             forward_position = self.sld_video.maximum()
         self.player.setPosition(forward_position)
         self.displayTime(forward_position)
     
+    def key_video_forward(self):
+        self.quick_forward.animateClick(50)
+    
+    def key_video_back(self):
+        self.quick_back.animateClick(50)
+    
     def video_back(self):
         back_position = self.player.position() - 5000
         if back_position == -5000:
-            echo(self, '请添加文件')
             return
         if back_position < 0:
             back_position = 0
         self.player.setPosition(back_position)
         self.displayTime(back_position)
+    
+    def key_clear_video(self):
+        self.btn_stop.animateClick(50)
+        
+    def file_video(self):
+        self.btn_choose.animateClick(50)
+    
+    def files_video(self):
+        self.btn_choose_videos.animateClick(50)
 
     def voice_big(self):
         voice_size = self.player.volume()
@@ -124,7 +188,8 @@ class Car_window(QMainWindow, Ui_MainWindow):
         else:
             voice_size += 5
             self.player.setVolume(voice_size)
-            self.voice_video.setText(f' | {voice_size}%')
+            self.voice_video.setText(f'{voice_size}%')
+            self.voice_Slider.setValue(voice_size)
 
     def voice_small(self):
         voice_size = self.player.volume()
@@ -133,7 +198,8 @@ class Car_window(QMainWindow, Ui_MainWindow):
         else:
             voice_size -= 5
             self.player.setVolume(voice_size)
-            self.voice_video.setText(f' | {voice_size}%')
+            self.voice_video.setText(f'{voice_size}%')
+            self.voice_Slider.setValue(voice_size)
     
     def getprocess(self, total_time):
         """total_time 当前总时长"""
@@ -162,7 +228,9 @@ class Car_window(QMainWindow, Ui_MainWindow):
             self.player.setMedia(QMediaContent(QUrl.fromLocalFile(self.curr_video)))  # 选取视频文件
             self.player.play()  # 播放视频
             self.FLAG_PLAY = True
+            self.btn_play.setIcon(QIcon(self.static_base_path + '\\static\\images\\player.png'))
         except Exception as e:
+            print(e)
             return
     
     def choose_videos_tree(self):
@@ -199,18 +267,34 @@ class Car_window(QMainWindow, Ui_MainWindow):
         except Exception as e:
             return
     
+    def video_list_show(self):
+        if self.treeWidget.isHidden():
+            self.video_list_region.show()
+            self.treeWidget.show()
+        else:
+            self.video_list_region.hide()
+            self.treeWidget.hide()
+        
+    def show_list(self):
+        self.btn_video_list.animateClick(50)
+    
     def playVideo(self):
         # 如果没有播放，则进行播放
         if not self.FLAG_PLAY:
+            self.btn_play.setIcon(QIcon(self.static_base_path + '\\static\\images\\player.png'))
             self.player.play()
             self.FLAG_PLAY = True
         else:
+            self.btn_play.setIcon(QIcon(self.static_base_path + '\\static\\images\\stop.png'))
             self.player.pause()
             self.FLAG_PLAY = False
+        self.btn_play.setIconSize(QSize(40, 40))
     
     def stopVideo(self):
         self.player.stop()
-    
+        self.btn_play.setIcon(QIcon(self.static_base_path + '\\static\\images\\stop.png'))
+        self.btn_play.setIconSize(QSize(40, 40))
+
     def changeSlide(self, position):
         self.sld_video.setValue(position)
         self.displayTime(position)
@@ -220,25 +304,49 @@ class Car_window(QMainWindow, Ui_MainWindow):
         seconds = int((ms - minutes * 60000) / 1000)
         self.lab_video.setText('{}:{}'.format(minutes, seconds))
     
-    def videoDoubleClicked(self, text):
-        if self.player.duration() > 0:  # 开始播放
-            # 后才允许进行全屏操作
-            if self.videoFullScreen:
-                self.videoFullScreen = False
-                self.widget.setFullScreen(0)
-                self.widget.setMaximumSize(self.wsize)
-            else:
-                self.wsize = self.widget.size()
-                self.widget.setFullScreen(1)
-                self.videoFullScreen = True
+    def handle_esc(self):
+        if self.video_widget.isFullScreen():
+            self.video_widget.setFullScreen(0)
+            self.video_widget.setMaximumSize(self.wsize)
 
-    def closeEvent(self, *args, **kwargs):
-        
-        self.close()
+    def videoDoubleClicked(self):
+        if self.player.duration() > 0:  # 开始播放
+            if self.video_widget.isFullScreen():
+                self.video_widget.setFullScreen(False)
+                self.video_widget.setMaximumSize(self.wsize)
+            else:
+                self.wsize = self.video_widget.size()
+                self.video_widget.setFullScreen(True)
+
+    def key_close(self):
+        self.btn_close.animateClick(50)
+
+    def closeEvent(self, event):
+        reply = QMessageBox.question(self, '提示', '你确认要退出吗？', QMessageBox.Yes, QMessageBox.No)
+        if reply == QMessageBox.Yes:
+            event.accept()
+        else:
+            event.ignore()
+    
+    def mousePressEvent(self, event):
+        if event.button() == Qt.LeftButton:
+            self.move_flag = True
+            self.start_x = event.x()
+            self.start_y = event.y()
+
+    def mouseMoveEvent(self, event):  # 重写移动事件
+        if self.move_flag:
+            label_x = event.globalPos().x()
+            label_y = event.globalPos().y()
+            start = label_x - self.start_x
+            end = label_y - self.start_y
+            self.move(start, end)
+            
+    def mouseReleaseEvent(self, QMouseEvent):
+        self.move_flag = False
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    print(app.arguments())
     main_window = Car_window()
     main_window.show()
     sys.exit(app.exec_())

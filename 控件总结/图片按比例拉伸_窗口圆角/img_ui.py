@@ -10,7 +10,7 @@ class MyLabel(QLabel):
         super(MyLabel, self).__init__(parent)
         self.setObjectName(u"label")
         self.setMinimumSize(QSize(200, 300))
-        self.pixmap = QPixmap('./25.jpg')
+        self.pixmap = QPixmap('25.jpg')
         self.point = QPoint(0, 0)
 
     def init_img(self, path):
