@@ -2,6 +2,7 @@
 from PyQt5.QtCore import pyqtSignal, Qt
 from PyQt5.QtGui import QMouseEvent
 from PyQt5.QtMultimediaWidgets import QVideoWidget
+from PyQt5.QtWidgets import QPushButton
 
 from utils import echo
 
@@ -13,7 +14,6 @@ class myVideoWidget(QVideoWidget):
 
     def __init__(self, parent=None):
         super(QVideoWidget, self).__init__(parent)
-        self.setAttribute(Qt.WA_TranslucentBackground, False)
 
     def mouseDoubleClickEvent(self, QMouseEvent):  # 双击事件
         self.doubleClickedItem.emit("double clicked")

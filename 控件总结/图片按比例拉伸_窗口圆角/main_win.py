@@ -13,7 +13,7 @@ class MyMain(QMainWindow, Ui_MainWindow):
     def __init__(self):
         super(MyMain, self).__init__()
         self.setupUi(self)
-        self.setAttribute(Qt.WA_TranslucentBackground)
+        # self.setAttribute(Qt.WA_TranslucentBackground)
         self.setWindowFlag(Qt.FramelessWindowHint)
         self.table_view.clicked.connect(self.handle)
         self.table_view.setEditTriggers(QAbstractItemView.DoubleClicked)

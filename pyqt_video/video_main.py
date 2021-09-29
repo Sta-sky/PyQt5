@@ -3,8 +3,7 @@
 import os
 import sys
 
-from PyQt5 import QtGui
-from PyQt5.QtCore import QUrl, QSize, Qt, QRectF
+from PyQt5.QtCore import QUrl, QSize, Qt, QRectF, QRect
 from PyQt5.QtGui import QIcon, QKeySequence, QPainterPath, QColor, QPainter, QBrush
 from PyQt5.QtMultimedia import QMediaPlayer, QMediaContent
 from PyQt5.QtWidgets import QApplication, QMainWindow, QFileDialog, QTreeWidgetItem, QShortcut, qApp, QMessageBox
@@ -13,17 +12,24 @@ from utils import echo
 from video_ui import Ui_MainWindow
 
 
-class Car_window(QMainWindow, Ui_MainWindow):
+class VideoWindow(QMainWindow, Ui_MainWindow):
     def __init__(self):
+
         super().__init__()
         self.setupUi(self)
-        self.resize(1700, 900)
+        self.desktop = QApplication.desktop()
+        self.desktop_width = self.desktop.width() * 0.8
+        self.desktop_height = self.desktop.height() * 0.7
+        self.setWindowFlags(Qt.FramelessWindowHint)
+        # self.setAttribute(Qt.WA_TranslucentBackground, True)
+        self.resize(int(self.desktop_width), int(self.desktop_height))
+        self.move(200, 100)
         self.base_path_list = []
         self.move_flag = False
         self.start_x = 0
         self.start_y = 0
-        # self.static_base_path = os.path.dirname(os.path.dirname(os.path.abspath(sys.executable)))
-        self.static_base_path = '.'
+        self.static_base_path = os.path.dirname(os.path.dirname(os.path.abspath(sys.executable)))
+        # self.static_base_path = '.'
         ico_path = self.static_base_path + '\\static\\images\\video.png'
         self.setWindowIcon(QIcon(ico_path))
         qss_path = self.static_base_path + '\\static\\qss\\style.qss'
@@ -31,8 +37,7 @@ class Car_window(QMainWindow, Ui_MainWindow):
             self.setStyleSheet(fp.read())
         self.setAutoFillBackground(False)
         self.border_width = 8
-        self.setWindowFlags(Qt.FramelessWindowHint | Qt.Window | Qt.Tool)
-        self.setAttribute(Qt.WA_TranslucentBackground, True)
+
         # 设置播放暂停的标志
         self.FLAG_PLAY = False
         
@@ -53,29 +58,31 @@ class Car_window(QMainWindow, Ui_MainWindow):
                 echo(self, '路径不存在')
         
         # 快捷键控制进度
-        QShortcut(QKeySequence('Left'), self.video_widget, self.key_video_back)
-        QShortcut(QKeySequence('Right'), self.video_widget, self.key_video_forward)
-        QShortcut(QKeySequence('Up'), self.video_widget, self.voice_big)
-        QShortcut(QKeySequence('Down'), self.video_widget, self.voice_small)
-        QShortcut(QKeySequence('Space'), self.video_widget, self.playVideo)
-        QShortcut(QKeySequence("Ctrl+R"), self.video_widget, self.key_close)
-        QShortcut(QKeySequence("Ctrl+D"), self.video_widget, self.key_clear_video)
-        QShortcut(QKeySequence("Ctrl+G"), self.video_widget, self.file_video)
-        QShortcut(QKeySequence("Ctrl+F"), self.video_widget, self.files_video)
-        QShortcut(QKeySequence("Ctrl+W"), self.video_widget, self.show_list)
-        QShortcut(QKeySequence("Esc"), self.video_widget, self.handle_esc)
+        QShortcut(QKeySequence('Left'), self, self.key_video_back)
+        QShortcut(QKeySequence('Right'), self, self.key_video_forward)
+        QShortcut(QKeySequence('Up'), self, self.voice_big)
+        QShortcut(QKeySequence('Down'), self, self.voice_small)
+        QShortcut(QKeySequence('Space'), self, self.playVideo)
+        QShortcut(QKeySequence("Ctrl+R"), self, self.key_close)
+        QShortcut(QKeySequence("Ctrl+D"), self, self.key_clear_video)
+        QShortcut(QKeySequence("Ctrl+G"), self, self.file_video)
+        QShortcut(QKeySequence("Ctrl+F"), self, self.files_video)
+        QShortcut(QKeySequence("Ctrl+W"), self, self.show_list)
+        QShortcut(QKeySequence("Esc"), self, self.handle_esc)
+        QShortcut(QKeySequence("Ctrl+Alt+Z"), self, self.hide_window)
         
         # 这里进行按钮的绑定
-        self.btn_choose.clicked.connect(self.openVideoFile)
+        self.btn_choose.clicked.connect(self.open_video_file)
+        self.btn_choose_videos.clicked.connect(self.choose_videos_tree)
         self.btn_play.clicked.connect(self.playVideo)
         self.btn_stop.clicked.connect(self.stopVideo)
         self.btn_close.clicked.connect(self.close)
         self.video_widget.doubleClickedItem.connect(self.videoDoubleClicked)
+        self.btn_min.clicked.connect(self.hide_window)
         
         # 控制音量
         self.player.setVolume(50)
         self.video_widget.wheelItem.connect(self.handle_voice)
-        self.btn_choose_videos.clicked.connect(self.choose_videos_tree)
         self.treeWidget.clicked.connect(self.handle_click_video)
         self.quick_forward.clicked.connect(self.video_forward)
         self.quick_back.clicked.connect(self.video_back)
@@ -252,15 +259,13 @@ class Car_window(QMainWindow, Ui_MainWindow):
         except Exception as e:
             return
     
-    def openVideoFile(self):
+    def open_video_file(self):
         try:
             file = QFileDialog.getOpenFileUrl()[0]
-            self.curr_video = file
-            file_flag = str(file).split('(')[-1]
-            if len(file_flag) < 4:
+            if not file.fileName():
                 return
-            video_name = str(file).split('/')[-1].replace(')', '')
-            self.video_name.setText(f'当前播放视频为： {video_name}')
+            self.curr_video = file
+            self.video_name.setText(f'当前播放视频为： {file.fileName()}')
             self.player.setMedia(QMediaContent(self.curr_video))  # 选取视频文件
             self.player.play()  # 播放视频
             self.FLAG_PLAY = True
@@ -308,6 +313,12 @@ class Car_window(QMainWindow, Ui_MainWindow):
         if self.video_widget.isFullScreen():
             self.video_widget.setFullScreen(0)
             self.video_widget.setMaximumSize(self.wsize)
+    
+    def hide_window(self):
+        if self.isHidden():
+            self.show()
+        else:
+            self.showMinimized()
 
     def videoDoubleClicked(self):
         if self.player.duration() > 0:  # 开始播放
@@ -317,6 +328,7 @@ class Car_window(QMainWindow, Ui_MainWindow):
             else:
                 self.wsize = self.video_widget.size()
                 self.video_widget.setFullScreen(True)
+                self.raise_()
 
     def key_close(self):
         self.btn_close.animateClick(50)
@@ -347,6 +359,6 @@ class Car_window(QMainWindow, Ui_MainWindow):
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    main_window = Car_window()
+    main_window = VideoWindow()
     main_window.show()
     sys.exit(app.exec_())
