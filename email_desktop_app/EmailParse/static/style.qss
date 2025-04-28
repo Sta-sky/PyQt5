@@ -8,7 +8,7 @@ QTableWidget {
 QGroupBox {
     font-size: 22px;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    color: white;
+    color: black;
     font-weight: 900px
 }
 
@@ -41,7 +41,7 @@ QGroupBox {
 
 
 QLabel#my_label {
-    color: white;
+    color: black;
     font: 18px;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }

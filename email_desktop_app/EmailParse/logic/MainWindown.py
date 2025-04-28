@@ -41,7 +41,7 @@ class EmailWindown(Ui_MainWindow, QMainWindow):
 			data = fp.read()
 			self.setStyleSheet(data)
 		palette = QPalette()
-		palette.setBrush(QPalette.Background, QBrush(QPixmap(self.base_path + "\\static\\image\\background.png")))
+		# palette.setBrush(QPalette.Background, QBrush(QPixmap(self.base_path + "\\static\\image\\background.png")))
 		self.setPalette(palette)
 		self.login_ui = LoginPage()
 		self.login_ui.setModal(True)

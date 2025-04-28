@@ -7,7 +7,9 @@ from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QAction, QWidget, QHBoxLayout, QGroupBox, QPushButton, QVBoxLayout, QTreeWidget, \
     QLabel, QLineEdit, QTextEdit, QTableWidget, QMenuBar, QMenu, QStatusBar, QFormLayout, \
     QAbstractItemView, QComboBox, QToolBar
-
+from qfluentwidgets import (FluentWindow, PushButton, LineEdit,
+                           setTheme, Theme, setThemeColor,
+                           NavigationItemPosition, FluentIcon, TableWidget, TreeWidget)
 # base_path = os.path.dirname(os.path.dirname(os.path.abspath(sys.executable)))
 base_path = '.'
 
@@ -59,22 +61,22 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout = QHBoxLayout()
         self.horizontalLayout.setObjectName(u"horizontalLayout")
-        self.add_employee = QPushButton('新增', self.groupBox)
+        self.add_employee = PushButton('新增', self.groupBox)
         self.add_employee.setObjectName(u"btn_all_emp")
 
         self.horizontalLayout.addWidget(self.add_employee)
 
-        self.del_employee = QPushButton('删除', self.groupBox)
+        self.del_employee = PushButton('删除', self.groupBox)
         self.del_employee.setObjectName(u"btn_all_emp")
 
         self.horizontalLayout.addWidget(self.del_employee)
 
-        self.submit_employee = QPushButton('提交', self.groupBox)
+        self.submit_employee = PushButton('提交', self.groupBox)
         self.submit_employee.setObjectName(u"btn_all_emp")
 
         self.horizontalLayout.addWidget(self.submit_employee)
 
-        self.cacell_employee = QPushButton('取消新增', self.groupBox)
+        self.cacell_employee = PushButton('取消新增', self.groupBox)
         self.cacell_employee.setObjectName(u"btn_all_emp")
 
         self.horizontalLayout.addWidget(self.cacell_employee)
@@ -82,7 +84,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayout.addLayout(self.horizontalLayout)
 
-        self.table_employee = QTableWidget(self.groupBox)
+        self.table_employee = TableWidget(self.groupBox)
         self.table_employee.setObjectName(u"table_employee")
 
         self.verticalLayout.addWidget(self.table_employee)
@@ -100,22 +102,22 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_2 = QHBoxLayout()
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
-        self.add_city = QPushButton('新增', self.groupBox)
+        self.add_city = PushButton('新增', self.groupBox)
         self.add_city.setObjectName(u"btn_all")
 
         self.horizontalLayout_2.addWidget(self.add_city)
 
-        self.del_city = QPushButton('删除', self.groupBox)
+        self.del_city = PushButton('删除', self.groupBox)
         self.del_city.setObjectName(u"btn_all")
 
         self.horizontalLayout_2.addWidget(self.del_city)
 
-        self.submit_city = QPushButton('提交', self.groupBox)
+        self.submit_city = PushButton('提交', self.groupBox)
         self.submit_city.setObjectName(u"btn_all")
 
         self.horizontalLayout_2.addWidget(self.submit_city)
 
-        self.cancell_city = QPushButton('取消新增', self.groupBox)
+        self.cancell_city = PushButton('取消新增', self.groupBox)
         self.cancell_city.setObjectName(u"btn_cancel")
 
         self.horizontalLayout_2.addWidget(self.cancell_city)
@@ -123,7 +125,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_2.addLayout(self.horizontalLayout_2)
 
-        self.table_city = QTableWidget(self.groupBox)
+        self.table_city = TableWidget(self.groupBox)
         self.table_city.setObjectName(u"table_city")
 
         self.verticalLayout_2.addWidget(self.table_city)
@@ -250,33 +252,34 @@ class Ui_MainWindow(object):
         QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
-        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
-        self.menu_file.setText(QCoreApplication.translate("MainWindow", u"\u6587\u4ef6", None))
-        self.menu_file.setToolTip(QCoreApplication.translate("MainWindow", u"\u6587\u4ef6", None))
-        self.login.setText(QCoreApplication.translate("MainWindow", u"\u90ae\u7bb1\u767b\u5f55", None))
-        self.login.setToolTip(QCoreApplication.translate("MainWindow", u"\u90ae\u7bb1\u767b\u5f55", None))
-        self.outlogin.setText(QCoreApplication.translate("MainWindow", u"\u9000\u51fa", None))
-        self.outlogin.setToolTip(QCoreApplication.translate("MainWindow", u"\u9000\u51fa", None))
-        self.outlogin.setShortcut(QCoreApplication.translate("MainWindow", u"Ctrl+Q", None))
-        self.btn_down_email.setText(QCoreApplication.translate("MainWindow", u"\u90ae\u4ef6\u4e0b\u8f7d", None))
-        self.btn_down_email.setToolTip(QCoreApplication.translate("MainWindow", u"\u90ae\u4ef6\u4e0b\u8f7d", None))
-        self.btn_export_excel.setText(QCoreApplication.translate("MainWindow", u"\u5bfc\u51fa\u8868\u683c", None))
-        self.btn_export_excel.setToolTip(QCoreApplication.translate("MainWindow", u"\u5bfc\u51fa\u8868\u683c", None))
-        self.groupBox.setTitle(QCoreApplication.translate("MainWindow", u"\u9879\u76ee\u7ba1\u7406", None))
-        self.laeb_employee.setText(QCoreApplication.translate("MainWindow", u"\u9879\u76ee\u6210\u5458\u85aa\u8d44\u5bf9\u7167\u8868", None))
-        self.label_city.setText(QCoreApplication.translate("MainWindow", u"\u51fa\u5dee\u57ce\u5e02\u8865\u8d34\u5bf9\u7167", None))
-        self.box_fillter.setTitle(QCoreApplication.translate("MainWindow", u"\u90ae\u4ef6\u4e0b\u8f7d\u8fc7\u6ee4", None))
-        self.label_year.setText(QCoreApplication.translate("MainWindow", u"\u5e74\u4efd\uff1a", None))
-        self.label_month.setText(QCoreApplication.translate("MainWindow", u"\u6708\u4efd\uff1a", None))
-        self.box_email_detail.setTitle(QCoreApplication.translate("MainWindow", u"\u90ae\u4ef6\u8be6\u60c5", None))
+        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", "MainWindow", None))
+        self.menu_file.setText(QCoreApplication.translate("MainWindow", "文件", None))
+        self.menu_file.setToolTip(QCoreApplication.translate("MainWindow", "文件", None))
+        self.login.setText(QCoreApplication.translate("MainWindow", "邮箱登录", None))
+        self.login.setToolTip(QCoreApplication.translate("MainWindow", "邮箱登录", None))
+        self.outlogin.setText(QCoreApplication.translate("MainWindow", "退出", None))
+        self.outlogin.setToolTip(QCoreApplication.translate("MainWindow", "退出", None))
+        self.outlogin.setShortcut(QCoreApplication.translate("MainWindow", "Ctrl+Q", None))
+        self.btn_down_email.setText(QCoreApplication.translate("MainWindow", "邮件下载", None))
+        self.btn_down_email.setToolTip(QCoreApplication.translate("MainWindow", "邮件下载", None))
+        self.btn_export_excel.setText(QCoreApplication.translate("MainWindow", "导出表格", None))
+        self.btn_export_excel.setToolTip(QCoreApplication.translate("MainWindow", "导出表格", None))
+        self.groupBox.setTitle(QCoreApplication.translate("MainWindow", "项目管理", None))
+
+        self.laeb_employee.setText(QCoreApplication.translate("MainWindow", "项目成员薪资对照表", None))
+        self.label_city.setText(QCoreApplication.translate("MainWindow", "出差城市补贴对照", None))
+        self.box_fillter.setTitle(QCoreApplication.translate("MainWindow", "邮件下载过滤", None))
+        self.label_year.setText(QCoreApplication.translate("MainWindow", "年份：", None))
+        self.label_month.setText(QCoreApplication.translate("MainWindow", "月份：", None))
+        self.box_email_detail.setTitle(QCoreApplication.translate("MainWindow", "邮件详情", None))
         ___qtreewidgetitem = self.treeWidget.headerItem()
-        ___qtreewidgetitem.setText(0, QCoreApplication.translate("MainWindow", u"邮件树", None))
-        self.label_subject.setText(QCoreApplication.translate("MainWindow", u"\u90ae\u4ef6\u4e3b\u9898 ", None))
-        self.label_send_mail.setText(QCoreApplication.translate("MainWindow", u"\u53d1\u4ef6\u4eba", None))
-        self.label_content_email.setText(QCoreApplication.translate("MainWindow", u"\u90ae\u4ef6\u5185\u5bb9", None))
-        self.menu_file_2.setTitle(QCoreApplication.translate("MainWindow", u"\u6587\u4ef6", None))
-        self.menuyoujian.setTitle(QCoreApplication.translate("MainWindow", u"\u90ae\u4ef6\u64cd\u4f5c", None))
-        self.toolBar.setWindowTitle(QCoreApplication.translate("MainWindow", u"toolBar", None))
+        ___qtreewidgetitem.setText(0, QCoreApplication.translate("MainWindow", "邮件树", None))
+        self.label_subject.setText(QCoreApplication.translate("MainWindow", "邮件主题 ", None))
+        self.label_send_mail.setText(QCoreApplication.translate("MainWindow", "发件人", None))
+        self.label_content_email.setText(QCoreApplication.translate("MainWindow", "邮件内容", None))
+        self.menu_file_2.setTitle(QCoreApplication.translate("MainWindow", "文件", None))
+        self.menuyoujian.setTitle(QCoreApplication.translate("MainWindow", "邮件操作", None))
+        self.toolBar.setWindowTitle(QCoreApplication.translate("MainWindow", "toolBar", None))
 
         # style
         self.table_city.setEditTriggers(QAbstractItemView.DoubleClicked)
@@ -286,11 +289,11 @@ class Ui_MainWindow(object):
         self.treeWidget.horizontalScrollBar()
         self.treeWidget.header().setMinimumSectionSize(700)
         self.treeWidget.setMinimumWidth(250)
-        for item in self.groupBox.findChildren(QPushButton, 'btn_all'):
+        for item in self.groupBox.findChildren(PushButton, 'btn_all'):
             item.setMaximumWidth(70)
-        for item in self.groupBox.findChildren(QPushButton, 'btn_all_emp'):
+        for item in self.groupBox.findChildren(PushButton, 'btn_all_emp'):
             item.setMaximumWidth(100)
-        for item in self.groupBox.findChildren(QPushButton, 'btn_cancel'):
+        for item in self.groupBox.findChildren(PushButton, 'btn_cancel'):
             item.setMaximumWidth(90)
         # 取父控件下的所有子类： 需要注意的是childern() 利用 inherits() 过滤出需要的子类
         for item in self.box_email_detail.children():

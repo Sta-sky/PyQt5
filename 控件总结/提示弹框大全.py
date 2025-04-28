@@ -1,6 +1,8 @@
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import Qt, pyqtSignal, QTimer
-
+from qfluentwidgets import (FluentWindow, PushButton, LineEdit,
+                           setTheme, Theme, setThemeColor,
+                           NavigationItemPosition, FluentIcon, TableWidget, TreeWidget, Dialog)
 
 class MyWindow(QWidget):
 
@@ -107,7 +109,7 @@ class MyWindow(QWidget):
         print(value, ok)
 
     def do_btn14(self, event):  # 输入：多文
-        value, ok = InputDialog.getMultiLineText(self, "输入框标题", "这是提示信息\n\n请输入地址:", "默认的\n我的地址是\n中国广东广州番禺")
+        value, ok = QInputDialog.getMultiLineText(self, "输入框标题", "这是提示信息\n\n请输入地址:", "默认的\n我的地址是\n中国广东广州番禺")
         self.echo(value)
 
     def do_btn15(self, event):  # 输入：选项
