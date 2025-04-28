@@ -204,6 +204,10 @@ def add_info(selfs_employee_city, type, selfs, list_info):
 		logger.error(str(e))
 		
 def submit_info(selfs, selfs_employee_city, type):
+	print(selfs_employee_city.rowCount())
+	print(selfs_employee_city)
+	print(selfs.new_add_emp_list)
+	print("===================vfddsvsfd ")
 	try:
 		if type == 'city':
 			info_list = selfs.new_add_city_list

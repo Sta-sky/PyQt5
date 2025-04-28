@@ -221,8 +221,8 @@ class EmailWindown(Ui_MainWindow, QMainWindow):
 	def login_in(self):
 		self.login_ui.show()
 		self.login_flag = False
-		self.login_ui.line_account.setText('holddang@sina.com')
-		self.login_ui.line_password.setText('10793300d')
+		self.login_ui.line_account.setText('holddang@163.com')
+		self.login_ui.line_password.setText('TWMGFSYSCFZZDPOZ')
 		
 	def sub_page_btn(self):
 		self.login_ui.btn_login.clicked.connect(self.handle_login)
@@ -274,6 +274,8 @@ class EmailWindown(Ui_MainWindow, QMainWindow):
 	def add_employee_info(self):
 		try:
 			self.table_employee.blockSignals(True)
+			print(self.new_add_emp_list)
+			print("test-----------------")
 			add_info(self.table_employee, 'data', self, self.new_add_emp_list)
 		except Exception as e:
 			self.logger.error(str(e))

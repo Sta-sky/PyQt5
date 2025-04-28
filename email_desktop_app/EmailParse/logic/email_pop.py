@@ -28,12 +28,12 @@ month_dic = {
 }
 
 
-def create_connect(username, password, selfs, host: str = 'pop.sina.com'):
+def create_connect(username, password, selfs, host: str = 'pop.163.com'):
 	try:
 		email = poplib.POP3(host)  # 创建一个pop3对象，这个时候实际上已经连接上服务器了
 		email.set_debuglevel(1)  # 设置调试模式，可以看到与服务器的交互信息
 		email.user(username)  # 向服务器发送用户名 密码
-		email.pass_('4285872ab6190fda')
+		email.pass_("TWMGFSYSCFZZDPOZ")
 		return email
 	except Exception as e:
 		if issubclass(poplib.error_proto, type(e)):
@@ -57,7 +57,7 @@ def handle_email(email_total_num, email_obj, year_month, progress):
 		email_list = []
 		for i in range(email_total_num):
 			curr_val = float('%.2f' % ((i / email_total_num) * 100))
-			progress.setValue(curr_val)
+			# progress.setValue(curr_val)
 			email_dic = {}
 			email_count += 1
 			try:
@@ -134,14 +134,14 @@ def decode_str(s):
 		logger.error(str(e))
 
 # if __name__ == '__main__':
-# 	host = "zhunda.com"  # pop3服务器地址
-# 	username = "dangyuanyang@zhunda.com"  # 邮箱用户名
-# 	password = "zhunda2021"  # 邮箱密码
+# 	host = "pop.163.com"  # pop3服务器地址
+# 	username = "holddang@163.com"  # 邮箱用户名
+# 	password = "TWMGFSYSCFZZDPOZ"  # 邮箱密码
 # 	email = create_connect(username=username, selfs='vfsd', password=password, host=host)
 # 	if email:
 # 		email_num, email_obj = get_email(email)
 # 		if email_num:
-# 			dic_info = handle_email(email_num, email_obj)
+# 			dic_info = handle_email(email_num, email_obj, "2024:3", None)
 # 			print(dic_info)
 # 		else:
 # 			print('邮件总数量为 0')
