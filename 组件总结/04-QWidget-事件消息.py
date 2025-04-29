@@ -8,7 +8,37 @@ class Window(QWidget):
         self.setup_ui()
 
     def setup_ui(self):
-        pass
+        layout = QHBoxLayout()
+        layout1 = QHBoxLayout()
+        layout2 = QHBoxLayout()
+        btn = QPushButton(self)
+        btn.setText("info")
+        btn.setMinimumSize(100, 30)  # 设置按钮的最小大小
+
+        btn1 = QPushButton(self)
+        btn1.setText("info1")
+        btn1.setMinimumSize(100, 30)  # 设置按钮的最小大小
+
+        btn2 = QPushButton(self)
+        btn2.setText("info")
+        btn2.setMinimumSize(100, 30)  # 设置按钮的最小大小
+
+        btn3 = QPushButton(self)
+        btn3.setText("info1")
+        btn3.setMinimumSize(100, 30)  # 设置按钮的最小大小
+
+        layout.addWidget(btn)
+        layout.addWidget(btn1)
+
+        layout1.addWidget(btn2)
+        layout1.addWidget(btn3)
+
+
+        layout2.addLayout(layout)
+        layout2.addLayout(layout1)
+
+
+        self.setLayout(layout2)  # 将布局设置为父窗口的布局
 
     def showEvent(self, QShowEvent):
         print("窗口被展示了出来")
